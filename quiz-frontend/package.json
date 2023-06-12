@@ -1,11 +1,11 @@
 {
   "name": "quiz",
   "version": "0.1.0",
-
   "scripts": {
     "test": "jest",
     "client-dev": "parcel public/index.html --open",
-    "start": "parcel build public/index.html "
+    "seed": "node public/seed/seed.js",
+    "start": "parcel build public/index.html && npm run seed"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -13,6 +13,7 @@
     "express": "^4.17.1",
     "jest-environment-jsdom": "^29.5.0",
     "morgan": "1.10.0",
+    "mysql2": "^3.3.4",
     "nodemon": "^2.0.19",
     "parcel": "^2.8.3",
     "react": "^18.2.0",
@@ -32,5 +33,3 @@
     "react-test-renderer": "^18.2.0"
   }
 }
-
-  
