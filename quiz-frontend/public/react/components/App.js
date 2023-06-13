@@ -1,15 +1,24 @@
-import apiURL from '../api';
-import React, {useState} from "react"
-// import { Button } from '@mui/material';
+import React, { useState } from "react";
+import Landing from "./LandingPage";
+import QuizList from "./LandingPage"
+import '../../style.css';
+
 export const App = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        Hello World
-        {/* <Button variant="contained"> Search for a quiz </Button>
-        <Button variant="contained"> Create a quiz </Button> */}
-      </header>
-    </div>
-  );
-}
+  const [state, setState] = useState("landing");
+  console.log(state)
+
+  if (state === "landing"){
+    return(
+      <Landing 
+      setState={setState}
+      />
+    )
+  }
+  else {
+    return(
+      <QuizList />
+    )
+  }
+
+};
 

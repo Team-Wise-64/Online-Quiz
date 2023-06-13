@@ -23,16 +23,5 @@ Object.keys(quizzes).forEach((quiz, index) => {
   })
   
 });
-/* connection.query(`CREATE TABLE test (question_number INT NOT NULL AUTO_INCREMENT PRIMARY KEY, question VARCHAR(255), a VARCHAR(255), b VARCHAR(255), c VARCHAR(255), d VARCHAR(255), answer VARCHAR(255));`)
-// ww2.forEach((item) => {
-//     connection.query('INSERT INTO test SET ?', item, (error, results) => {
-//       if (error) {
-//         console.error(error);
-//       } else {
-//         console.log('Data inserted successfully');
-//       }
-//     });
-//   });
-*/
 
-  connection.end();
+connection.end();

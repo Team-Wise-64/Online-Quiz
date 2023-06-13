@@ -1,13 +1,68 @@
+/* Style the body */
 body {
+  background-color: #4e97fe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Style the header */
+.App-header {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the h1 element */
+.App-header p {
+  font-size: xx-large;
+  color: #fff;
+  margin-bottom: 80px;
+}
+
+/* Style the play button */
+.Play-btn {
+  color: #FFF;
+  transition: all 0.5s;
+  position: relative;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+}
+
+.Play-btn::before {
+  content: '';
+  position: absolute;
+  top: -10px; /* Increase the top offset */
+  left: -60px; /* Increase the left offset */
+  width: calc(100% + 120px); /* Adjust the width */
+  height: calc(100% + 20px); /* Adjust the height */
+  z-index: 1;
+  transition: all 0.8s;
+  border: 1px solid rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.1);
+}
+
+.Play-btn::after {
+  content: '';
+  position: absolute;
+  top: -10px; /* Increase the top offset */
+  left: -60px; /* Increase the left offset */
+  width: calc(100% + 120px); /* Adjust the width */
+  height: calc(100% + 20px); /* Adjust the height */
+  z-index: 1;
+  transition: all 0.8s;
+  border: 1px solid rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.1);
+}
+
+.Play-btn:hover::before {
+  transform: rotate(-45deg);
+  background-color: rgba(255,255,255,0);
+}
+
+.Play-btn:hover::after {
+  transform: rotate(45deg);
+  background-color: rgba(255,255,255,0);
 }
