@@ -1,11 +1,16 @@
-import React, { useState } from "react";
-import AllQuiz from "./AllQuiz";
+import React from "react";
 
-export default Landing = ({ setState }) => {
+export default LandingPage = ({ state, setState }) => {
+
+  function handleClick(e) {
+    e.preventDefault();
+    setState("pickingQuiz");
+  }
   return (
     <div className="App-header">
-      <p>Welcome to The Quiz Nexus</p>
-      <AllQuiz setState={setState} />
+      <p>Welcome to the quiz</p>
+      <button className="Play-btn" onClick={handleClick}>Play</button>
     </div>
-  );
+  )
+
 };
