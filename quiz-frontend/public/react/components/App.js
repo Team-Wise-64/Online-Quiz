@@ -1,15 +1,24 @@
-import apiURL from '../api';
 import React, { useState } from "react";
-import Play from "./allquiz";
+import Landing from "./LandingPage";
+import QuizList from "./LandingPage"
 import '../../style.css';
 
 export const App = () => {
-  return (
-    <div>
-      <header className="App-header">
-        <h1>Welcome to the Mind Quest!</h1>
-        <Play />
-      </header>
-    </div>
-  );
-}
+  const [state, setState] = useState("landing");
+  console.log(state)
+
+  if (state === "landing"){
+    return(
+      <Landing 
+      setState={setState}
+      />
+    )
+  }
+  else {
+    return(
+      <QuizList />
+    )
+  }
+
+};
+
