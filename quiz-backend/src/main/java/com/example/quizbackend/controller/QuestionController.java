@@ -20,6 +20,7 @@ public class QuestionController {
   private QuestionServiceImpl questionService;
 
 
+  //returns all questions for a set quiz
   @GetMapping("/quizzes/{quiz_id}/questions")
   public Object[] getAllQuestions(@PathVariable(value = "quiz_id") Integer quiz_id){
 
