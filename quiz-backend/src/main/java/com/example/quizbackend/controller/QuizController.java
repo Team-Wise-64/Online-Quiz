@@ -4,6 +4,7 @@ package com.example.quizbackend.controller;
 import com.example.quizbackend.model.Question;
 import com.example.quizbackend.model.Quiz;
 import com.example.quizbackend.service.QuizService;
+import com.example.quizbackend.service.QuizServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,32 +19,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuizController {
 
   @Autowired
-  private QuizService quizService;
+  private QuizServiceImpl quizService;
 
   //implement crud methods
 
-  @PostMapping("/quiz")
+  @PostMapping("/quizzes")
   public Quiz saveQuiz(@RequestBody Quiz quiz) {
     return null;
   }
 
-  @GetMapping("/quiz")
-  public List<Question> getAllQuestions() {
-    return null;
+  @GetMapping("/quizzes")
+  public List<Quiz> getAllQuiz() {
+    return quizService.getAllQuiz();
   }
 
-  @GetMapping("/quiz/{id}")
-  public Quiz getQuizById(@PathVariable("id") Integer id) {
+  @GetMapping("/quizzes/{id}")
+  public String getQuizById(@PathVariable("id") Integer id) {
 
-    return quizService.getQuizById(id);
+    return quizService.getQuizNameById(id);
   }
 
-  @PutMapping("/quiz/{id}")
+  @PutMapping("/quizzes/{id}")
   public Quiz updateQuiz(@PathVariable("id") Long id, @RequestBody Quiz quiz) {
     return null;
   }
 
-  @DeleteMapping("/quiz/{id}")
+  @DeleteMapping("/quizzes/{id}")
   public String deleteQuiz(@PathVariable("id") Long id) {
     return null;
   }
