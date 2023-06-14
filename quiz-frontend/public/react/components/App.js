@@ -1,24 +1,29 @@
 import React, { useState } from "react";
-import Landing from "./LandingPage";
-import QuizList from "./LandingPage"
+import LandingPage from "./LandingPage";
+import AllQuiz from "./AllQuiz"
 import '../../style.css';
 
 export const App = () => {
   const [state, setState] = useState("landing");
   console.log(state)
 
-  if (state === "landing"){
-    return(
-      <Landing 
-      setState={setState}
-      />
-    )
-  }
-  else {
-    return(
-      <QuizList />
-    )
-  }
-
-};
-
+  return (
+    <main>
+    { state === "landing" 
+    &&
+    <LandingPage 
+    state={state}
+    setState={setState}
+    />
+    }
+    
+    { state === "pickingQuiz" 
+    &&
+    <AllQuiz 
+    state={state}
+    setState={setState}
+    />
+    }
+  </main>
+  )
+}
