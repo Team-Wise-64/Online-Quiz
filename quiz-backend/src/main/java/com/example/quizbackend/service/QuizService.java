@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface QuizService {
 
-  List<Question> getAllQuestions();
+  List<Quiz> getAllQuiz();
 
-  Quiz getQuizById(Integer id);
+  String getQuizNameById(Integer id);
 
 
-  Quiz updateQuizById(Long id, Quiz quiz);
+  Quiz updateQuizNameById(Long id, Quiz quiz);
 
   Quiz deleteQuizById(Long id);
 
