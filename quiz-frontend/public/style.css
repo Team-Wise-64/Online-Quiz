@@ -12,6 +12,7 @@ body {
 .App-header {
   padding: 20px;
   text-align: center;
+
 }
 
 /* Style the h1 element */
@@ -23,12 +24,16 @@ body {
 
 /* Style the play button */
 .Play-btn {
-  color: #FFF;
+  color: black;
   transition: all 0.5s;
   position: relative;
   font-size: 1.5em;
   background: none;
   border: none;
+}
+
+.Play-btn:hover {
+  color: #4e97fe;
 }
 
 .Play-btn::before {
@@ -38,10 +43,9 @@ body {
   left: -60px; /* Increase the left offset */
   width: calc(100% + 120px); /* Adjust the width */
   height: calc(100% + 20px); /* Adjust the height */
-  z-index: 1;
+  z-index: -1;
   transition: all 0.8s;
   border: 1px solid rgba(255,255,255,0.2);
-  background-color: rgba(255,255,255,0.1);
 }
 
 .Play-btn::after {
@@ -51,18 +55,17 @@ body {
   left: -60px; /* Increase the left offset */
   width: calc(100% + 120px); /* Adjust the width */
   height: calc(100% + 20px); /* Adjust the height */
-  z-index: 1;
+  z-index: -1;
   transition: all 0.8s;
-  border: 1px solid rgba(255,255,255,0.2);
-  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .Play-btn:hover::before {
   transform: rotate(-45deg);
-  background-color: rgba(255,255,255,0);
+  background-color: rgb(255, 255, 255);
 }
 
 .Play-btn:hover::after {
   transform: rotate(45deg);
-  background-color: rgba(255,255,255,0);
+  background-color: rgb(255, 255, 255);
 }
