@@ -1,25 +1,39 @@
 package com.example.quizbackend.model;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.util.List;
 
 @Entity
+@Table(name = "quizzes")
 public class Quiz {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private int quizId;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "quiz_id")
+  private int quiz_id;
+
+  @Column(name = "quiz_name")
   private String quizName;
 
+//  @OneToMany(fetch = FetchType.EAGER, mappedBy = "quiz_id")
+//  private List<Question> questionList;
+
+
+
   public int getQuizId() {
-    return quizId;
+    return quiz_id;
   }
 
   public void setQuizId(int quizId) {
-    this.quizId = quizId;
+    this.quiz_id = quizId;
   }
 
   public String getQuizName() {
@@ -34,12 +48,8 @@ public class Quiz {
 
   }
 
-  public Quiz(Integer id, String name){
-    this.quizId = id;
-    this.quizName = name;
+  public Quiz(int quiz_number, String quizName) {
+    this.quiz_id = quiz_number;
+    this.quizName = quizName;
   }
-
-
-
-
 }
