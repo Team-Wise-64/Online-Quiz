@@ -6,6 +6,7 @@ import com.example.quizbackend.repository.QuizRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,22 +15,20 @@ public class QuizServiceImpl implements QuizService{
 
   @Autowired
   private QuizRepository quizRepository;
+
+
   @Override
-  public List<Question> getAllQuestions() {
-    return null;
+  public List<Quiz> getAllQuiz() {
+    return quizRepository.findAll();
   }
 
   @Override
-  public Quiz getQuizById(Integer id) {
-    Optional<Quiz> quiz = quizRepository.findById(id);
-    if (quiz.isPresent()){
-      return quiz.get();
-    }
-    return null;
+  public String getQuizNameById(Integer id) {
+    Optional<Quiz> optionalQuiz = quizRepository.findById(id);
+    return optionalQuiz.isPresent() ? optionalQuiz.get().getQuizName() : null;
   }
-
   @Override
-  public Quiz updateQuizById(Long id, Quiz quiz) {
+  public Quiz updateQuizNameById(Long id, Quiz quiz) {
     return null;
   }
 
@@ -37,4 +36,7 @@ public class QuizServiceImpl implements QuizService{
   public Quiz deleteQuizById(Long id) {
     return null;
   }
+
+
+
 }
