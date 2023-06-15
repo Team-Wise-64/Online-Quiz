@@ -1,6 +1,6 @@
 import React from "react";
 
-export default LandingPage = ({ state, setState }) => {
+export default LandingPage = ({ setState }) => {
   function handleClick(e) {
     e.preventDefault();
     setState("pickingQuiz");
