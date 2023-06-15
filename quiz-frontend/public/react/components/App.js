@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LandingPage from "./LandingPage";
 import QuizList from "./QuizList";
+import PlayingQuiz from "./PlayingQuiz";
 import Button from "@mui/material/Button";
 import HomeIcon from '@mui/icons-material/Home';
 
@@ -37,7 +38,11 @@ export const App = () => {
 
       {state === "landing" && <LandingPage setState={setState} />}
 
-      {state === "pickingQuiz" && <QuizList setState={setState} quizzes={quizzes}/>}
+      {state === "pickingQuiz" && <QuizList state={state} setState={setState} quizzes={quizzes}/>}
+
+
+    { state === "playingQuiz"&& <PlayingQuiz  state={state} setState={setState}/> }
+
     </main>
   );
 };
