@@ -1,11 +1,11 @@
 import React from "react";
-import Button from "@mui/material/Button";
 
-export default function QuizList({ state, setState, quizzes }) {
+export default function QuizList({ setState, quizzes }) {
   function handleClick(e) {
     e.preventDefault();
     setState("landing");
   }
+
 
   function quizClick(e){
     e.preventDefault();
@@ -21,16 +21,7 @@ export default function QuizList({ state, setState, quizzes }) {
   return (
     <div className="quiz-container">
       <h1>Pick your Quiz!</h1>
-      {/* {dummyQuizzes.map((quiz) => ( */}
       {quizzes.map((quiz, index) => (
-        // <Button
-        //   key={index}
-        //   className="each-quiz"
-        //   variant="contained"
-        //   color="secondary"
-        // >
-        //   {quiz.quizName}
-        // </Button>
         <button key={index} className="cartoon-btn" onClick={quizClick}>
           {quiz.quizName}
         </button>

@@ -15,7 +15,6 @@ export const App = () => {
   console.log(state);
 
 
-  //Temporarily not working
   async function getQuizzes(){
     try{
     const res = await fetch(`${apiURL}/quizzes`)
@@ -37,12 +36,13 @@ export const App = () => {
       <HomeIcon color="primary" onClick={ () => {setState("landing")}} className="top-button">Home</HomeIcon>
       </div>
 
-      {state === "landing" && <LandingPage state={state} setState={setState} />}
+      {state === "landing" && <LandingPage setState={setState} />}
 
       {state === "pickingQuiz" && <QuizList state={state} setState={setState} quizzes={quizzes}/>}
 
 
     { state === "playingQuiz"&& <PlayingQuiz  state={state} setState={setState}/> }
+
     </main>
   );
 };
