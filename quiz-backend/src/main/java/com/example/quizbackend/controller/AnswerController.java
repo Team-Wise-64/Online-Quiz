@@ -18,9 +18,8 @@ public class AnswerController {
     //returns all questions for a set quiz
     @CrossOrigin(origins = "http://localhost:1234")
     @GetMapping("/quizzes/{quiz_id}/questions/{question_id}/answer")
-    public Object[] getAllQuestions(@PathVariable(value = "quiz_id") Integer quiz_id,
-    @PathVariable(value = "question_id") Integer question_id){
+    public Object[] getAllAnswers(@PathVariable(value = "question_id") Integer question_id){
 
-        return answerService.getAnswer(quiz_id, question_id);
+        return answerService.getAnswer(question_id);
     }
 }

@@ -2,35 +2,71 @@ import React, {useState, useEffect} from "react";
 import apiURL from "../api";
 
 export default function PlayingQuiz({id}){
-    const [questions, setQuestions] = useState([]);
-    const [idx, setIdx] = useState(0);
+    const [currentQuestion, setCurrentQuestion] = useState([]);
+    const [currentAnswers, setCurrentAnswers] = useState([])
+    const [idx, setIdx] = useState(1);
+    const [showAnswer, setShowAnswer] = useState(false);
+    const [showQuestion, setShowQuestion] = useState(true);
+    const [timer, setTimer] = useState(3);
 
     useEffect(() => {
-        questionData();
+        getQuestion();
+        getAnswer();
+        
+        for(let i = 0; i < 3; i++){
+            setInterval(setTimer(timer - 1), 1000)
+        }
+
+        setInterval(() => {
+            setShowAnswer(true)
+            setShowQuestion(false)
+        }, 4000); //render after 4sec
     },[]);
 
-    async function questionData(){
+    async function countDown(){
+        for(let i = 0; i < 3; i++){
+            setInterval(setTimer(timer - 1), 1000)
+        }
+    }
+
+    async function getQuestion(){
         try{
-            console.log(id)
-            const response = await fetch(`${apiURL}/quizzes/${id}/questions`);
+            const response = await fetch(`${apiURL}/quizzes/${id}/questions/${idx}`);
             const data = await response.json();
-            console.log(`${data} is working!`);
-            setQuestions(data);
+            setCurrentQuestion(data);
         }catch(err){
             console.error(err);
         }
     }
 
-    //questionData()
+    async function getAnswer(){
+        try{
+            const response = await fetch(`${apiURL}/quizzes/${id}/questions/${idx}/answer`);
+            const data = await response.json();
+            setCurrentAnswers(data[0]);
+        }catch(err){
+            console.error(err);
+        }
+    }
+
+    function setNextQuestion(){
+        setId(id + 1);
+        setIdx(idx + 1);
+        getAnswer();
+        getQuestion();
+    }
 
     return(
         <>
-        <h1>Hello world!</h1>
-        {questions.map((question, index) => (
-            <p key={index}>{index}: {question}</p>
-        ))}
-
-        <p>{questions[idx]}</p>
+        {showQuestion && <h1>{currentQuestion}</h1>}
+        {showQuestion && <h1>{timer}</h1>}
+        {showAnswer && <p>{idx}: {currentQuestion}</p>}
+        {console.log(id)}
+        {console.log(idx)}
+        {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>A: {currentAnswers[0]}</button>}
+        {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>B: {currentAnswers[1]}</button>}
+        {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>C: {currentAnswers[2]}</button>}
+        {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>D: {currentAnswers[3]}</button>}
         </>
     );
 }

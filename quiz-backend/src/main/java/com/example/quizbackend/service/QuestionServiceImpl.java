@@ -17,4 +17,9 @@ public class QuestionServiceImpl implements QuestionService{
   public Object[] getAllQuestions(Integer quiz_id) {
     return questionRepository.findByQuizId(quiz_id);
   }
+
+  @Override
+  public Object[] getAQuestion(Integer quiz_id, Integer questionNumber) {
+    return questionRepository.findByQuestionNum(quiz_id,questionNumber);
+  }
 }
