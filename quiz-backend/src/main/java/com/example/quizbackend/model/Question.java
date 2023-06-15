@@ -2,16 +2,7 @@ package com.example.quizbackend.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -19,51 +10,33 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "questions")
 public class Question {
   @Id
-  @Column(name = "question_number")
+  @Column(name = "question_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int questionNumber;
+  private int questionId;
+  @Column(name = "question_number")
+  private Integer questionNumber;
 
   @Column(name = "question")
   private String question;
 
-  @Column(name = "a")
-  private String a;
-
-  @Column(name = "b")
-  private String b;
-
-  @Column(name = "c")
-  private String c;
-
-  @Column(name = "d")
-  private String d;
-
-  @Column(name = "answer")
-  private String answer;
-
-//  @Column(name = "quiz_id")
-//  private Integer quiz_id;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "quiz_id", nullable = false)
   @OnDelete(action = OnDeleteAction.CASCADE)
   @JsonIgnore
   private Quiz quiz;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "question_id", nullable = false)
+  private Answer answer;
 
   public Question(){
 
   }
 
-  public Question(int questionNumber, String question, String a, String b, String c, String d,
-      String answer) {
+  public Question(int questionId, int questionNumber, String question) {
+    this.questionId = questionId;
     this.questionNumber = questionNumber;
     this.question = question;
-    this.a = a;
-    this.b = b;
-    this.c = c;
-    this.d = d;
-    this.answer = answer;
-    //this.quiz_id = quiz_id;
   }
 
 }
