@@ -29,4 +29,12 @@ public class QuestionController {
     return questionService.getAllQuestions(quiz_id);
   }
 
+  @CrossOrigin(origins = "http://localhost:1234")
+  @GetMapping("/quizzes/{quiz_id}/questions/{questionNumber}")
+  public Object[] getAQuestion(@PathVariable(value = "quiz_id") Integer quiz_id,
+      @PathVariable(value = "questionNumber") Integer questionNumber){
+
+    return questionService.getAQuestion(quiz_id, questionNumber);
+  }
+
 }

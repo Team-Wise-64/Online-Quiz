@@ -11,8 +11,14 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
 
   @Query(
-      value = "SELECT question, a, b, c, d, answer FROM questions u WHERE u.quiz_id = :quizId",
+      value = "SELECT question FROM questions u WHERE u.quiz_id = :quizId",
       nativeQuery = true)
   Object[] findByQuizId(@Param("quizId") Integer quizId);
+
+  @Query(
+      value = "SELECT question FROM questions u WHERE u.quiz_id = :quizId AND question_number = :questionNumber",
+      nativeQuery = true)
+  Object[] findByQuestionNum(@Param("quizId") Integer quizId,
+      @Param("questionNumber") Integer questionNumber);
 
 }

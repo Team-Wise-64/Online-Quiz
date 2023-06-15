@@ -8,4 +8,6 @@ public interface QuestionService {
 
   Object[] getAllQuestions(Integer quiz_id);
 
+  Object[] getAQuestion(Integer quiz_id, Integer questionNumber);
+
 }

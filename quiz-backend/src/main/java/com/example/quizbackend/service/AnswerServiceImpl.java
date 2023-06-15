@@ -10,7 +10,7 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     private AnswerRepository answerRepository;
     @Override
-    public Object[] getAnswer(Integer quizId, Integer questionId) {
+    public Object[] getAnswer(Integer questionId) {
         return answerRepository.findByQuestionId(questionId);
     }
 }

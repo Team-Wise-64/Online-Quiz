@@ -9,6 +9,7 @@ export default LandingPage = ({ setState }) => {
   return (
     <div className="App-header">
       <p>Welcome to the Quiz Nexus</p>
+    
       <button className="Play-btn" onClick={handleClick}>
         Play
       </button>
