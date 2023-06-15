@@ -1,28 +1,21 @@
 import React from "react";
 
-export default function QuizList({ setState, quizzes }) {
-  function handleClick(e) {
-    e.preventDefault();
-    setState("landing");
-  }
+export default function QuizList({ setState, quizzes, setId}) {
 
 
-  function quizClick(e){
-    e.preventDefault();
-    setState("playingQuiz")
-  }
-
-  // const dummyQuizzes = [
-  //   { quiz_number: 1, quiz_name: "ww2" },
-  //   { quiz_number: 2, quiz_name: "cats" },
-  //   { quiz_number: 3, quiz_name: "space" },
-  // ];
 
   return (
     <div className="quiz-container">
       <h1>Pick your Quiz!</h1>
       {quizzes.map((quiz, index) => (
-        <button key={index} className="cartoon-btn" onClick={quizClick}>
+        <button key={index} className="cartoon-btn" onClick={(e) => {
+          e.preventDefault();
+          console.log("quiz", quiz)
+          console.log("id", quiz.quizId)
+          setId(quiz.quizId)
+          setState("playingQuiz")
+    
+          }}>
           {quiz.quizName}
         </button>
       ))}

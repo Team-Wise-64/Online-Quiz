@@ -1,28 +1,36 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import apiURL from "../api";
 
-export default async function PlayingQuiz(){
-    const [quiz, setQuiz] = useState("playingQuiz");
+export default function PlayingQuiz({id}){
+    const [questions, setQuestions] = useState([]);
+    const [idx, setIdx] = useState(0);
 
     useEffect(() => {
-        quizData();
+        questionData();
     },[]);
 
-    async function quizData(){
+    async function questionData(){
         try{
-            const response = fetch(`${apiURL}/quizzes/questions`);
-            setQuiz(response);
-            console.log(setQuiz);
+            console.log(id)
+            const response = await fetch(`${apiURL}/quizzes/${id}/questions`);
+            const data = await response.json();
+            console.log(`${data} is working!`);
+            setQuestions(data);
         }catch(err){
             console.error(err);
         }
     }
 
+    //questionData()
+
     return(
         <>
-        {quiz.map(quizzie => (
-            <button key={quizzie.quiz_id}>{quizzie.question_number}</button>
+        <h1>Hello world!</h1>
+        {questions.map((question, index) => (
+            <p key={index}>{index}: {question}</p>
         ))}
+
+        <p>{questions[idx]}</p>
         </>
     );
 }
