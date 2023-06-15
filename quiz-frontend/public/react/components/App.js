@@ -13,6 +13,7 @@ export const App = () => {
   const [state, setState] = useState("landing");
   const [quizzes, setQuizzes] = useState([])
   console.log(state);
+  const [id, setId] = useState(0);
 
 
   async function getQuizzes(){
@@ -38,10 +39,10 @@ export const App = () => {
 
       {state === "landing" && <LandingPage setState={setState} />}
 
-      {state === "pickingQuiz" && <QuizList state={state} setState={setState} quizzes={quizzes}/>}
+      {state === "pickingQuiz" && <QuizList  setState={setState} quizzes={quizzes} setId={setId}/>}
 
 
-    { state === "playingQuiz"&& <PlayingQuiz  state={state} setState={setState}/> }
+    { state === "playingQuiz"&& <PlayingQuiz setState={setState} id={id}/> }
 
     </main>
   );
