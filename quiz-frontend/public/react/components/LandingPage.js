@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonWithOverlay from "./ButtonWithOverlay"
 
 export default LandingPage = ({ setState }) => {
   function handleClick(e) {
@@ -11,6 +12,7 @@ export default LandingPage = ({ setState }) => {
       <button className="Play-btn" onClick={handleClick}>
         Play
       </button>
+      <ButtonWithOverlay />
     </div>
   );
 };
