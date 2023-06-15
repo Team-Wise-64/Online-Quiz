@@ -6,7 +6,7 @@ body {
   margin: 0;
 
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
+  background-size: 100% 1000%;
   animation: gradient 15s ease infinite;
 }
 
@@ -93,11 +93,6 @@ body {
   width: 100%;
 }
 
-.each-quiz {
-  display: flex;
-  flex-direction: column;
-}
-
 /* Style the top bar */
 .top-bar {
   display: flex;
@@ -144,6 +139,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin-bottom: 12px;
 }
 
 .cartoon-btn:focus {
