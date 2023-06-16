@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "test": "jest",
-    "client-dev": "parcel public/index.html --open",
+    "client-dev": "parcel public/index.html --open --no-cache",
     "seed": "node public/seed/seed.js",
     "start": "parcel build public/index.html && npm run seed"
   },
