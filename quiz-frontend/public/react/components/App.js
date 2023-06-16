@@ -39,7 +39,7 @@ export const App = () => {
       {state === "pickingQuiz" && <QuizList  setState={setState} quizzes={quizzes} setId={setId}/>}
 
 
-    { state === "playingQuiz"&& <PlayingQuiz setState={setState} id={id}/> }
+    { state === "playingQuiz"&& <PlayingQuiz setState={setState} id={id} setId={setId}/> }
 
     </main>
   );

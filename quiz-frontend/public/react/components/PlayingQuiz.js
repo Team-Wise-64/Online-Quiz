@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from "react";
 import apiURL from "../api";
 
-export default function PlayingQuiz({id}){
+export default function PlayingQuiz({id, setId}){
   const [currentQuestion, setCurrentQuestion] = useState([]);
   const [currentAnswers, setCurrentAnswers] = useState([]);
   const [idx, setIdx] = useState(1);
   const [showAnswer, setShowAnswer] = useState(false);
   const [showQuestion, setShowQuestion] = useState(true);
+  const [showEnd, setShowEnd] = useState(false);
   const [timer, setTimer] = useState(5);
-  const [showScore, setShowScore] = useState("");
+  const [showScore, setShowScore] = useState(false);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     getQuestion();
@@ -27,6 +29,8 @@ export default function PlayingQuiz({id}){
 
     return () => clearInterval(countdown);
   }, []);
+
+  useEffect(() => {}, [currentAnswers,currentQuestion,timer]);
 
   async function getQuestion(){
     try{
@@ -48,18 +52,38 @@ export default function PlayingQuiz({id}){
     }
   }
 
-  function setNextQuestion(){
-    setId(id + 1);
-    setIdx(idx + 1);
-    getAnswer();
-    getQuestion();
+  function setNextQuestion(chosenOption){
+    if(idx < 10){
+        setIdx(idx + 1);
+        getAnswer();
+        getQuestion();
+
+
+
+        console.log("option", chosenOption);
+        console.log('answer', currentAnswers[4]);
+
+        if(chosenOption == currentAnswers[4]){
+
+            setScore(score + 1)
+       }
+       
+
+       setTimer(5);
+       setShowQuestion(true);
+    }else{
+        setShowAnswer(false)
+        setShowEnd(true)
+        setShowScore(false);
+    }
+    
   }
 
   return(
     <>
     {/* These are the stats */}
     <div> 
-    {showScore && <p className="score">Score:</p>}
+    {showScore && <p className="score">Score: {score}</p>}
     {showScore && <p className="timer">Timer:</p>}
     </div>
     
@@ -72,10 +96,15 @@ export default function PlayingQuiz({id}){
     {/* Question and answers */}
     <div>
     {showAnswer && <p>{idx}: {currentQuestion}</p>}
-    {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>A: {currentAnswers[0]}</button>}
-    {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>B: {currentAnswers[1]}</button>}
-    {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>C: {currentAnswers[2]}</button>}
-    {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>D: {currentAnswers[3]}</button>} 
+    {showAnswer && <button className="cartoon-btn" onClick={() => {setNextQuestion(currentAnswers[0])}}>A: {currentAnswers[0]}</button>}
+    {showAnswer && <button className="cartoon-btn" onClick={() => {setNextQuestion(currentAnswers[1])}}>B: {currentAnswers[1]}</button>}
+    {showAnswer && <button className="cartoon-btn" onClick={() => {setNextQuestion(currentAnswers[2])}}>C: {currentAnswers[2]}</button>}
+    {showAnswer && <button className="cartoon-btn" onClick={() => {setNextQuestion(currentAnswers[3])}}>D: {currentAnswers[3]}</button>} 
+    </div>
+
+    <div>
+        {showEnd && <p>You have reached end of quiz</p>}
+        {showEnd && <p className="score">Score: {score}</p>}
     </div>
     </>
   );
