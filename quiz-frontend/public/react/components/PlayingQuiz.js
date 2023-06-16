@@ -14,7 +14,7 @@ export default function PlayingQuiz({id}){
       getAnswer();
   
       const countdown = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
+        setTimer((timer) => timer - 1);
       }, 1000);
   
       setTimeout(() => {
