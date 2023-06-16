@@ -75,7 +75,7 @@ export default function PlayingQuiz({id}){
     {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>A: {currentAnswers[0]}</button>}
     {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>B: {currentAnswers[1]}</button>}
     {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>C: {currentAnswers[2]}</button>}
-    {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>D: {currentAnswers[3]}</button>}
+    {showAnswer && <button className="cartoon-btn" onClick={setNextQuestion}>D: {currentAnswers[3]}</button>} 
     </div>
     </>
   );
