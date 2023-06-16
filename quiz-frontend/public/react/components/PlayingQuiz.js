@@ -3,52 +3,49 @@ import apiURL from "../api";
 
 export default function PlayingQuiz({id}){
     const [currentQuestion, setCurrentQuestion] = useState([]);
-    const [currentAnswers, setCurrentAnswers] = useState([])
+    const [currentAnswers, setCurrentAnswers] = useState([]);
     const [idx, setIdx] = useState(1);
     const [showAnswer, setShowAnswer] = useState(false);
     const [showQuestion, setShowQuestion] = useState(true);
     const [timer, setTimer] = useState(3);
-
+  
     useEffect(() => {
-        getQuestion();
-        getAnswer();
-        
-        for(let i = 0; i < 3; i++){
-            setInterval(setTimer(timer - 1), 1000)
-        }
-
-        setInterval(() => {
-            setShowAnswer(true)
-            setShowQuestion(false)
-        }, 4000); //render after 4sec
-    },[]);
-
-    async function countDown(){
-        for(let i = 0; i < 3; i++){
-            setInterval(setTimer(timer - 1), 1000)
-        }
-    }
-
+      getQuestion();
+      getAnswer();
+  
+      const countdown = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+  
+      setTimeout(() => {
+        clearInterval(countdown);
+        setShowAnswer(true);
+        setShowQuestion(false);
+      }, 4000);
+  
+      return () => clearInterval(countdown);
+    }, []);
+  
     async function getQuestion(){
-        try{
-            const response = await fetch(`${apiURL}/quizzes/${id}/questions/${idx}`);
-            const data = await response.json();
-            setCurrentQuestion(data);
-        }catch(err){
-            console.error(err);
-        }
+      try{
+        const response = await fetch(`${apiURL}/quizzes/${id}/questions/${idx}`);
+        const data = await response.json();
+        setCurrentQuestion(data);
+      }catch(err){
+        console.error(err);
+      }
     }
-
+  
     async function getAnswer(){
-        try{
-            const response = await fetch(`${apiURL}/quizzes/${id}/questions/${idx}/answer`);
-            const data = await response.json();
-            setCurrentAnswers(data[0]);
-        }catch(err){
-            console.error(err);
-        }
+      try{
+        const response = await fetch(`${apiURL}/quizzes/${id}/questions/${idx}/answer`);
+        const data = await response.json();
+        setCurrentAnswers(data[0]);
+      }catch(err){
+        console.error(err);
+      }
     }
-
+  
     function setNextQuestion(){
         setId(id + 1);
         setIdx(idx + 1);

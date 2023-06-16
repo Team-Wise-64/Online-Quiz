@@ -15,7 +15,7 @@ export default function ButtonWithOverlay(){
   return (
     <div>
       <button onClick={handleOpen} className="overlay-button">
-        Click Me!
+        Leaderboard
       </button>
       {overlay && (
         <div className="overlay-container">
