@@ -10,6 +10,8 @@ public interface QuizService {
 
   String getQuizNameById(Integer id);
 
+  Quiz saveQuiz(Quiz newQuiz);
+
 
   Quiz updateQuizNameById(Long id, Quiz quiz);
 

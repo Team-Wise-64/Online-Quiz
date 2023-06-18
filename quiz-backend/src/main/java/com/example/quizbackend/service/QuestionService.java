@@ -10,4 +10,8 @@ public interface QuestionService {
 
   Object[] getAQuestion(Integer quiz_id, Integer questionNumber);
 
+  Question saveQuestion(Question newQuestion);
+
 }
+
+
