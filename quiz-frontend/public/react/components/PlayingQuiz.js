@@ -11,6 +11,7 @@ export default function PlayingQuiz({id, setId}){
   const [timer, setTimer] = useState(5);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  const [questionTimer, setQuestionTimer] = useState(36);
 
   useEffect(() => {
     getQuestion();
@@ -29,6 +30,19 @@ export default function PlayingQuiz({id, setId}){
 
     return () => clearInterval(countdown);
   }, []);
+
+  useEffect(() => {
+    const timerCountdown = setInterval(() => {
+        setQuestionTimer((previousTimer) => previousTimer - 1);
+    }, 1000);
+
+    if(questionTimer == 0){
+        clearInterval(timerCountdown);
+        setNextQuestion(true);
+    }
+
+    return() => clearInterval(timerCountdown);
+  },[questionTimer]);
 
   useEffect(() => {}, [currentAnswers,currentQuestion,timer]);
 
@@ -67,8 +81,7 @@ export default function PlayingQuiz({id, setId}){
 
             setScore(score + 1)
        }
-       
-
+       setQuestionTimer(30);
        setTimer(5);
        setShowQuestion(true);
     }else{
@@ -84,7 +97,7 @@ export default function PlayingQuiz({id, setId}){
     {/* These are the stats */}
     <div> 
     {showScore && <p className="score">Score: {score}</p>}
-    {showScore && <p className="timer">Timer:</p>}
+    {showScore && <p className="timer">Timer: {questionTimer}</p>}
     </div>
     
     {/* Pre question */}
