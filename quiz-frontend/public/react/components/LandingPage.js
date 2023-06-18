@@ -14,6 +14,7 @@ export default LandingPage = ({ setState }) => {
         Play
       </button>
       <ButtonWithOverlay />
+      <button className="cartoon-btn" onClick={() => {setState("adding")}}>Add a quiz!</button>
     </div>
   );
 };

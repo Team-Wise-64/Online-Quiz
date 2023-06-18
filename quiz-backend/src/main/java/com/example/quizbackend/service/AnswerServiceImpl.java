@@ -1,5 +1,6 @@
 package com.example.quizbackend.service;
 
+import com.example.quizbackend.model.Answer;
 import com.example.quizbackend.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,5 +13,9 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public Object[] getAnswer(Integer questionId) {
         return answerRepository.findByQuestionId(questionId);
+    }
+
+    public Answer saveAnswer(Answer newAnswer){
+        return answerRepository.save(newAnswer);
     }
 }

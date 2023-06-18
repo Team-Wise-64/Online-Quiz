@@ -3,6 +3,7 @@ import LandingPage from "./LandingPage";
 import QuizList from "./QuizList";
 import PlayingQuiz from "./PlayingQuiz";
 import HomeIcon from '@mui/icons-material/Home';
+import AddQuiz from "./AddQuiz";
 
 import "../../style.css";
 import apiURL from "../api"
@@ -40,6 +41,8 @@ export const App = () => {
 
 
     { state === "playingQuiz"&& <PlayingQuiz setState={setState} id={id} setId={setId}/> }
+
+    {state === "adding" && <AddQuiz setState={setState} />}
 
     </main>
   );

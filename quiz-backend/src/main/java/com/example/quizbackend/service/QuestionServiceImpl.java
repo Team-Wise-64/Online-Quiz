@@ -22,4 +22,8 @@ public class QuestionServiceImpl implements QuestionService{
   public Object[] getAQuestion(Integer quiz_id, Integer questionNumber) {
     return questionRepository.findByQuestionNum(quiz_id,questionNumber);
   }
+
+  public Question saveQuestion(Question newQuestion){
+    return questionRepository.save(newQuestion);
+  }
 }

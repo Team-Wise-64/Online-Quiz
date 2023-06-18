@@ -26,7 +26,7 @@ public class QuizController {
 
   @PostMapping("/quizzes")
   public Quiz saveQuiz(@RequestBody Quiz quiz) {
-    return null;
+    return quizService.saveQuiz(quiz);
   }
 
   @CrossOrigin(origins = "http://localhost:1234")

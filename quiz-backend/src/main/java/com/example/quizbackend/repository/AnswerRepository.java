@@ -14,3 +14,7 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
     Object[] findByQuestionId(@Param("questionId") Integer questionId);
 
 }
+//    @Query(value = "INSERT INTO question VALUES :quiz_name",
+//        nativeQuery = true
+//    )
+//    Object[] saveQuiz(@Param("quiz_name") String quizName);

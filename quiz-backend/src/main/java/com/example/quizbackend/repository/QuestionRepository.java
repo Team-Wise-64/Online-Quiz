@@ -22,3 +22,4 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
       @Param("questionNumber") Integer questionNumber);
 
 }
+

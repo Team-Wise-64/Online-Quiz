@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class QuizServiceImpl implements QuizService{
@@ -26,6 +27,11 @@ public class QuizServiceImpl implements QuizService{
   public String getQuizNameById(Integer id) {
     Optional<Quiz> optionalQuiz = quizRepository.findById(id);
     return optionalQuiz.isPresent() ? optionalQuiz.get().getQuizName() : null;
+  }
+
+  @Override
+  public Quiz saveQuiz(Quiz newQuiz){
+    return quizRepository.save(newQuiz);
   }
   @Override
   public Quiz updateQuizNameById(Long id, Quiz quiz) {
