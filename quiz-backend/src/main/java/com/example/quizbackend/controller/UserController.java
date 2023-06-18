@@ -1,6 +1,5 @@
 package com.example.quizbackend.controller;
 
-import com.example.quizbackend.model.Quiz;
 import com.example.quizbackend.model.User;
 import com.example.quizbackend.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
-    @PostMapping("/quizzes")
+    @PostMapping("/users")
     public User saveUser(@RequestBody User user) {
         return null;
     }
@@ -30,7 +29,7 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public Quiz updateUser(@PathVariable("id") Long id, @RequestBody User user) {
+    public User updateUser(@PathVariable("id") Long id, @RequestBody User user) {
         return null;
     }
 
