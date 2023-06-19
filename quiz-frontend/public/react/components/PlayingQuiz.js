@@ -51,7 +51,7 @@ export default function PlayingQuiz({ id, setId }) {
     try {
       const response = await fetch(`${apiURL}/quizzes/${id}/questions/${idx}`);
       const data = await response.json();
-      setCurrentQuestion(data);
+      setCurrentQuestion(data[0]);
     } catch (err) {
       console.error(err);
     }
@@ -69,29 +69,28 @@ export default function PlayingQuiz({ id, setId }) {
     }
   }
 
-  function setNextQuestion(chosenOption){
+  async function setNextQuestion(chosenOption){
+
+    if (chosenOption === currentAnswers[4]) {
+      const timeLeftScore = Math.round(questionTimer * 66.6);
+      setScore(score + timeLeftScore);
+    }
+
     if(idx < 10){
-        setIdx(idx + 1);
-        getAnswer();
-        getQuestion();
+       setIdx(idx + 1);
+       await getAnswer();
+       await getQuestion();
 
-
-
-        console.log("option", chosenOption);
-        console.log('answer', currentAnswers[4]);
-
-        if(chosenOption == currentAnswers[4]){
-
-            setScore(score + 1)
-       }
        setQuestionTimer(15);
        setTimer(5);
-       setShowQuestion(true);
+       setShowQuestion(false);
     }else{
         setShowAnswer(false)
         setShowEnd(true)
         setShowScore(false);
     }
+
+    
     
   }
 
