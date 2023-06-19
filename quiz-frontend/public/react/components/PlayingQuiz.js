@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import apiURL from "../api";
 
-export default function PlayingQuiz({id, setId}){
+export default function PlayingQuiz({ id, setId }) {
   const [currentQuestion, setCurrentQuestion] = useState([]);
   const [currentAnswers, setCurrentAnswers] = useState([]);
   const [idx, setIdx] = useState(1);
@@ -11,7 +11,7 @@ export default function PlayingQuiz({id, setId}){
   const [timer, setTimer] = useState(5);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
-  const [questionTimer, setQuestionTimer] = useState(36);
+  const [questionTimer, setQuestionTimer] = useState(30);
 
   useEffect(() => {
     getQuestion();
@@ -26,6 +26,7 @@ export default function PlayingQuiz({id, setId}){
       setShowAnswer(true);
       setShowQuestion(false);
       setShowScore(true);
+      setQuestionTimer(30)
     }, 6000);
 
     return () => clearInterval(countdown);
@@ -33,35 +34,37 @@ export default function PlayingQuiz({id, setId}){
 
   useEffect(() => {
     const timerCountdown = setInterval(() => {
-        setQuestionTimer((previousTimer) => previousTimer - 1);
+      setQuestionTimer((previousTimer) => previousTimer - 1);
     }, 1000);
 
-    if(questionTimer == 0){
-        clearInterval(timerCountdown);
-        setNextQuestion(true);
+    if (questionTimer === 0) {
+      clearInterval(timerCountdown);
+      setNextQuestion();
     }
 
-    return() => clearInterval(timerCountdown);
-  },[questionTimer]);
+    return () => clearInterval(timerCountdown);
+  }, [questionTimer]);
 
-  useEffect(() => {}, [currentAnswers,currentQuestion,timer]);
+  useEffect(() => {}, [currentAnswers, currentQuestion, timer]);
 
-  async function getQuestion(){
-    try{
+  async function getQuestion() {
+    try {
       const response = await fetch(`${apiURL}/quizzes/${id}/questions/${idx}`);
       const data = await response.json();
       setCurrentQuestion(data);
-    }catch(err){
+    } catch (err) {
       console.error(err);
     }
   }
 
-  async function getAnswer(){
-    try{
-      const response = await fetch(`${apiURL}/quizzes/${id}/questions/${idx}/answer`);
+  async function getAnswer() {
+    try {
+      const response = await fetch(
+        `${apiURL}/quizzes/${id}/questions/${idx}/answer`
+      );
       const data = await response.json();
       setCurrentAnswers(data[0]);
-    }catch(err){
+    } catch (err) {
       console.error(err);
     }
   }
@@ -92,33 +95,73 @@ export default function PlayingQuiz({id, setId}){
     
   }
 
-  return(
+  return (
     <>
-    {/* These are the stats */}
-    <div> 
-    {showScore && <p className="score">Score: {score}</p>}
-    {showScore && <p className="timer">Timer: {questionTimer}</p>}
-    </div>
-    
-    {/* Pre question */}
-    <div>
-    {showQuestion && <h1>{currentQuestion}</h1>}
-    {showQuestion && <h1>{timer}</h1>}
-    </div>
+      {/* These are the stats */}
+      <div>
+        {showScore && <p className="score">Score: {score}</p>}
+        {showScore && <p className="timer">Timer: {questionTimer}</p>}
+      </div>
 
-    {/* Question and answers */}
-    <div>
-    {showAnswer && <p>{idx}: {currentQuestion}</p>}
-    {showAnswer && <button className="cartoon-btn" onClick={() => {setNextQuestion(currentAnswers[0])}}>A: {currentAnswers[0]}</button>}
-    {showAnswer && <button className="cartoon-btn" onClick={() => {setNextQuestion(currentAnswers[1])}}>B: {currentAnswers[1]}</button>}
-    {showAnswer && <button className="cartoon-btn" onClick={() => {setNextQuestion(currentAnswers[2])}}>C: {currentAnswers[2]}</button>}
-    {showAnswer && <button className="cartoon-btn" onClick={() => {setNextQuestion(currentAnswers[3])}}>D: {currentAnswers[3]}</button>} 
-    </div>
+      {/* Pre question */}
+      <div>
+        {showQuestion && <h1>{currentQuestion}</h1>}
+        {showQuestion && <h1>{timer}</h1>}
+      </div>
 
-    <div>
-        {showEnd && <p>You have reached end of quiz</p>}
+      {/* Question and answers */}
+      <div>
+        {showAnswer && (
+          <p>
+            {idx}: {currentQuestion}
+          </p>
+        )}
+        {showAnswer && (
+          <button
+            className="cartoon-btn"
+            onClick={() => {
+              setNextQuestion(currentAnswers[0]);
+            }}
+          >
+            A: {currentAnswers[0]}
+          </button>
+        )}
+        {showAnswer && (
+          <button
+            className="cartoon-btn"
+            onClick={() => {
+              setNextQuestion(currentAnswers[1]);
+            }}
+          >
+            B: {currentAnswers[1]}
+          </button>
+        )}
+        {showAnswer && (
+          <button
+            className="cartoon-btn"
+            onClick={() => {
+              setNextQuestion(currentAnswers[2]);
+            }}
+          >
+            C: {currentAnswers[2]}
+          </button>
+        )}
+        {showAnswer && (
+          <button
+            className="cartoon-btn"
+            onClick={() => {
+              setNextQuestion(currentAnswers[3]);
+            }}
+          >
+            D: {currentAnswers[3]}
+          </button>
+        )}
+      </div>
+
+      <div>
+        {showEnd && <p>You have reached the end of the quiz</p>}
         {showEnd && <p className="score">Score: {score}</p>}
-    </div>
+      </div>
     </>
   );
 }
