@@ -9,6 +9,7 @@ export default function AddQuiz({ setState }) {
 
   const [quizName, setQuizName] = useState("");
   const [question, setQuestion] = useState({});
+  const [options, setOptions] = useState({});
   const [a, setA] = useState("");
   const [b, setB] = useState("");
   const [c, setC] = useState("");
@@ -19,10 +20,15 @@ export default function AddQuiz({ setState }) {
 
   function handleSubmitQuestion(e) {
     e.preventDefault();
-    setQuestion({ question: question, a: a, b: b, c: c, d: d, answer: answer });
-    setQuestions([question, ...questions]);
+    setQuestion({ question: question});
+    setOptions({a: a, b: b, c: c, d: d, answer: answer})
+    console.log("questions", questions);
+    console.log([question, options]);
+    setQuestions([[question, options], ...questions]);
     console.log(question);
     console.log(questions);
+    console.log(quizName);
+    //post method here
   }
 
   for (let i = 0; i < 10; i++) {
@@ -85,7 +91,7 @@ export default function AddQuiz({ setState }) {
         <TextField
           type="text"
           variant="outlined"
-          onChange={(e) => setQuizName(e.target.value)}
+          onChange={(e) => setQuizName({quiz_name: e.target.value})}
         ></TextField>
         {form}
         <button type="submit">Save quiz</button>

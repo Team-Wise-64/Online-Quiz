@@ -35,17 +35,20 @@ public class QuizController {
     return quizService.getAllQuiz();
   }
 
+  @CrossOrigin(origins = "http://localhost:1234")
   @GetMapping("/quizzes/{id}")
   public String getQuizById(@PathVariable("id") Integer id) {
 
     return quizService.getQuizNameById(id);
   }
 
+  @CrossOrigin(origins = "http://localhost:1234")
   @PutMapping("/quizzes/{id}")
   public Quiz updateQuiz(@PathVariable("id") Long id, @RequestBody Quiz quiz) {
     return null;
   }
 
+  @CrossOrigin(origins = "http://localhost:1234")
   @DeleteMapping("/quizzes/{id}")
   public String deleteQuiz(@PathVariable("id") Long id) {
     return null;
