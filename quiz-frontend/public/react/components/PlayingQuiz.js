@@ -11,7 +11,7 @@ export default function PlayingQuiz({ id, setId }) {
   const [timer, setTimer] = useState(5);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
-  const [questionTimer, setQuestionTimer] = useState(30);
+  const [questionTimer, setQuestionTimer] = useState(15);
 
   useEffect(() => {
     getQuestion();
@@ -26,7 +26,7 @@ export default function PlayingQuiz({ id, setId }) {
       setShowAnswer(true);
       setShowQuestion(false);
       setShowScore(true);
-      setQuestionTimer(30)
+      setQuestionTimer(15)
     }, 6000);
 
     return () => clearInterval(countdown);
@@ -84,7 +84,7 @@ export default function PlayingQuiz({ id, setId }) {
 
             setScore(score + 1)
        }
-       setQuestionTimer(30);
+       setQuestionTimer(15);
        setTimer(5);
        setShowQuestion(true);
     }else{

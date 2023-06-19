@@ -367,11 +367,11 @@ a:hover {
 }
 
 .add-button:hover::before {
-  transform: rotate(-90deg);
+  transform: rotate(-270deg);
   background-color: rgb(255, 255, 255);
 }
 
 .add-button:hover::after {
-  transform: rotate(0deg);
+  transform: rotate(-180deg);
   background-color: rgb(255, 255, 255);
 }
