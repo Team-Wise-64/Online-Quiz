@@ -301,7 +301,7 @@ a:hover {
   font-size: 16px;
 
   border: 0;
-  margin-top: 80px;
+  margin-top: 150px;
 
   user-select: none;
   -webkit-user-select: none;
@@ -324,4 +324,54 @@ a:hover {
   font-size: 18px;
   font-weight: bold;
   color: blue;
+}
+
+.add-button {
+  color: black;
+  transition: all 0.5s;
+  position: relative;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  margin-top: 150px;
+}
+
+.add-button:hover {
+  color: #4e97fe;
+}
+
+.add-button::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -60px;
+  top: -10px; /* Increase the top offset */
+  left: -60px; /* Increase the left offset */
+  width: calc(100% + 120px); /* Adjust the width */
+  height: calc(100% + 20px); /* Adjust the height */
+  z-index: -1;
+  transition: all 0.8s;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.add-button::after {
+  content: '';
+  position: absolute;
+  top: -10px; /* Increase the top offset */
+  left: -60px; /* Increase the left offset */
+  width: calc(100% + 120px); /* Adjust the width */
+  height: calc(100% + 20px); /* Adjust the height */
+  z-index: -1;
+  transition: all 0.8s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.add-button:hover::before {
+  transform: rotate(-90deg);
+  background-color: rgb(255, 255, 255);
+}
+
+.add-button:hover::after {
+  transform: rotate(0deg);
+  background-color: rgb(255, 255, 255);
 }
