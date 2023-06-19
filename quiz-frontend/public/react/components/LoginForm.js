@@ -8,21 +8,10 @@ export default function LogIn({setState}){
     const [nextUser, setNextUser] = useState([]);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const errors = {
-        username: "Invalid username",
-        password: "Invalid password"
-    };
-
-    const renderError = (name) => {
-        name === error.name && (
-            <div className="error">{error.message}</div>
-        );
-    };
 
     async function handleSubmit(e){
         e.preventDefault();
         setState("loginForm");
-        let {userName, passWord} = document.forms[0];
         /*This is for new users
         try{
             const res = await fetch(`${apiURL}/users`,{
@@ -32,40 +21,38 @@ export default function LogIn({setState}){
             const data = await res.json();
         }catch(err){}
         */
-       try{
-        const res = await fetch(`${apiURL}/users`,{
-            method: "GET"
-        });
-        const data = await res.json();
-        setNextUser(data);
-       }catch(err){
-        console.error('Error is: ' + err);
-       }
-        if(nextUser) {
-            if(nextUser.password !== passWord.value){
-                setError({name: "passWord", message: errors.password});
-            }else{
-                setIsLoggedIn(true);
+        try{
+            const res = await fetch(`${apiURL}/users`,{
+                method: "GET"
+            });
+            const data = await res.json();
+            console.log(data);
+            console.log(username);
+            console.log(password);
+            for(let i = 0; i < data.length; i++){
+                let user = data[i];
+                if(user.userName == username && user.password == password){
+                    setState("landing");
+                }
             }
-        }else{
-            setError({name: "userName", message: errors.username})
+            setNextUser(data);
+        }catch(err){
+            console.error('Error is: ' + err);
         }
     };
     const renderForm = (
         <div className="form">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e)=> handleSubmit(e)}>
                 <div className="input">
                 <label>Username</label>
-                <input type="text" name="username" required/>
-                {renderError("userName")}
+                <input type="text" name="username" required onChange={(e) => {setUsername(e.target.value)}}/>
                 </div>
                 <div className="input">
                 <label>Password</label>
-                <input type="password" name="password" required/>
-                {renderError("passWord")}
+                <input type="password" name="password" required onChange={(e) => {setPassword(e.target.value)}}/>
                 </div>
                 <div>
-                    <button onClick={() => {setState("landing")}}>Or log in as guest</button>
+                    <button onClick={() => {setState("landing")}}>Or log in as guest(Score not saved)</button>
                 </div>
                 <div>
                     <button type="submit">Login</button>
@@ -77,7 +64,7 @@ export default function LogIn({setState}){
     return(
         <div>
             <div>
-                <div>Sign In</div>
+                <div className="login-form">Sign In</div>
                 {isLoggedIn ? <div>User is successfully logged in</div>: renderForm}
             </div>
         </div>
