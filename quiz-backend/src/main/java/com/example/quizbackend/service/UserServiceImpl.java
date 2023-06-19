@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public String getUserNameById(Integer id){
         Optional<User> optionalUser = userRepository.findById(id);
-        return optionalUser.isPresent() ? optionalUser.get().getUserName() : null;
+        return optionalUser.map(User::getUserName).orElse(null);
     }
     @Override
     public User updateUserNameById(Long id, User user) {

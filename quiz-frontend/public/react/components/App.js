@@ -4,12 +4,13 @@ import QuizList from "./QuizList";
 import PlayingQuiz from "./PlayingQuiz";
 import HomeIcon from '@mui/icons-material/Home';
 import AddQuiz from "./AddQuiz";
+import LogIn from "./LoginForm";
 
 import "../../style.css";
 import apiURL from "../api"
 
 export const App = () => {
-  const [state, setState] = useState("landing");
+  const [state, setState] = useState("loginForm");
   const [quizzes, setQuizzes] = useState([])
   console.log(state);
   const [id, setId] = useState(0);
@@ -34,6 +35,8 @@ export const App = () => {
       <div className="top-bar">
       <HomeIcon color="primary" onClick={ () => {setState("landing")}} className="top-button">Home</HomeIcon>
       </div>
+
+      {state ==="loginForm" && <LogIn setState={setState}/>}
 
       {state === "landing" && <LandingPage setState={setState} />}
 
