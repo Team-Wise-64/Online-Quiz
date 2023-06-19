@@ -1,6 +1,8 @@
 package com.example.quizbackend.service;
 
+import com.example.quizbackend.model.Score;
 import com.example.quizbackend.repository.ScoreRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,4 +22,13 @@ public class ScoreServiceImpl implements ScoreService{
     return scoreRepository.getSingleScore(question_id,user_id);
   }
 
+  @Override
+  public Score saveScore(Score score) {
+    return scoreRepository.save(score);
+  }
+
+  @Override
+  public List<Score> allScores(){
+    return scoreRepository.findAll();
+  }
 }

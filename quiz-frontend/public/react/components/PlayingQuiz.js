@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import apiURL from "../api";
 
-export default function PlayingQuiz({ id, setId }) {
+export default function PlayingQuiz({ setState, id, currentUserId }) {
   const [currentQuestion, setCurrentQuestion] = useState([]);
   const [currentAnswers, setCurrentAnswers] = useState([]);
   const [idx, setIdx] = useState(1);
@@ -69,7 +69,24 @@ export default function PlayingQuiz({ id, setId }) {
     }
   }
 
+  async function saveScore(){
+    try {
+      const res = await fetch(`${apiURL}/scores`, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: {quiz_id: id, score: score, user_id: currentUserId}
+      })
+      
+      const data = res.json();
+    } catch (error) {
+      
+    }
+      
+  }
+
   async function setNextQuestion(chosenOption){
+
+     console.log(idx);
 
     if (chosenOption === currentAnswers[4]) {
       const timeLeftScore = Math.round(questionTimer * 66.6);
@@ -88,6 +105,8 @@ export default function PlayingQuiz({ id, setId }) {
         setShowAnswer(false)
         setShowEnd(true)
         setShowScore(false);
+
+        saveScore(); //add score to database
     }
 
     

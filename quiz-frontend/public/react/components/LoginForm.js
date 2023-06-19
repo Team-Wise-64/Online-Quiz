@@ -2,12 +2,15 @@ import React, {useState} from "react";
 import users from '../../seed/userData';
 import apiURL from "../api";
 
-export default function LogIn({setState}){
+import { TextField } from "@mui/material";
+import { form, FormLabel } from "@mui/material";
+
+export default function LogIn({setState, setUserId}){
     const [error, setError] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [nextUser, setNextUser] = useState([]);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [invalidLogin, setInvalidLogin] = useState(false);
 
     async function handleSubmit(e){
         e.preventDefault();
@@ -31,11 +34,16 @@ export default function LogIn({setState}){
             console.log(password);
             for(let i = 0; i < data.length; i++){
                 let user = data[i];
-                if(user.userName == username && user.password == password){
+                if(user.username == username && user.password == password){
+                    setUserId(user.user_id)
+                    console.log(user.user_id)
                     setState("landing");
+
                 }
             }
-            setNextUser(data);
+            
+            //if invalid login
+            setInvalidLogin(true);
         }catch(err){
             console.error('Error is: ' + err);
         }
@@ -44,12 +52,12 @@ export default function LogIn({setState}){
         <div className="form">
             <form onSubmit={(e)=> handleSubmit(e)}>
                 <div className="input">
-                <label>Username</label>
-                <input type="text" name="username" required onChange={(e) => {setUsername(e.target.value)}}/>
+                <FormLabel>Username</FormLabel>
+                <TextField type="text" name="username" variant="outlined" required onChange={(e) => {setUsername(e.target.value)}}/>
                 </div>
                 <div className="input">
-                <label>Password</label>
-                <input type="password" name="password" required onChange={(e) => {setPassword(e.target.value)}}/>
+                <FormLabel>Password</FormLabel>
+                <TextField type="password" name="password" variant="outlined" required onChange={(e) => {setPassword(e.target.value)}}/>
                 </div>
                 <div>
                     <button onClick={() => {setState("landing")}}>Or log in as guest(Score not saved)</button>
@@ -58,7 +66,9 @@ export default function LogIn({setState}){
                     <button type="submit">Login</button>
                 </div>
             </form>
+            {invalidLogin && <p className="p-text">Invalid login please try again!</p>}
         </div>
+        
     );
 
     return(

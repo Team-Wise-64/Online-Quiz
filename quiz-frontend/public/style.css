@@ -147,6 +147,10 @@ body {
   margin-bottom: 12px;
 }
 
+.p-text{
+  color: black
+}
+
 .cartoon-btn:focus {
   outline: 0;
 }

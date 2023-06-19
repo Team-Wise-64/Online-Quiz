@@ -13,7 +13,8 @@ export const App = () => {
   const [state, setState] = useState("loginForm");
   const [quizzes, setQuizzes] = useState([])
   console.log(state);
-  const [id, setId] = useState(0);
+  const [id, setId] = useState(0); //quiz id
+  const [userId, setUserId] = useState(null); //current user id logged in
 
 
   async function getQuizzes(){
@@ -36,14 +37,14 @@ export const App = () => {
       <HomeIcon color="primary" onClick={ () => {setState("landing")}} className="top-button">Home</HomeIcon>
       </div>
 
-      {state ==="loginForm" && <LogIn setState={setState}/>}
+      {state ==="loginForm" && <LogIn setState={setState} setUserId ={setUserId} />}
 
       {state === "landing" && <LandingPage setState={setState} />}
 
       {state === "pickingQuiz" && <QuizList  setState={setState} quizzes={quizzes} setId={setId}/>}
 
 
-    { state === "playingQuiz"&& <PlayingQuiz setState={setState} id={id} setId={setId}/> }
+    { state === "playingQuiz"&& <PlayingQuiz setState={setState} id={id} userId = {userId}/> }
 
     {state === "adding" && <AddQuiz setState={setState} />}
 
