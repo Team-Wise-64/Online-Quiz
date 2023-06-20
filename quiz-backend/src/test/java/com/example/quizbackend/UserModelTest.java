@@ -8,7 +8,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class UserModelTest {
     @Test
-    void userShouldHaveUserId(){
-        System.out.println("This test is working!");
-    }
+    void userShouldHaveUserId(){}
 }
