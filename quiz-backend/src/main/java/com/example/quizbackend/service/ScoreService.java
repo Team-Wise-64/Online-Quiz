@@ -13,6 +13,8 @@ public interface ScoreService {
 
   Score saveScore(Score score);
 
+  void addScore(Integer quiz_id, Integer score, Integer user_id);
+
   List<Score> allScores();
 
 }
