@@ -20,6 +20,14 @@ public interface ScoreRepository extends JpaRepository<Score, Integer> {
       @Param("userId") Integer userId,
       @Param("quizId") Integer quizId);
 
+  @Query(
+      value = "INSERT INTO scores (quiz_id, score, user_id ) VALUES (:quizId, :score, :userId)",
+      nativeQuery = true)
+  void addScore(
+      @Param("quizId") Integer quizId,
+      @Param("score") Integer score,
+      @Param("userId") Integer userId);
+
 
 
 

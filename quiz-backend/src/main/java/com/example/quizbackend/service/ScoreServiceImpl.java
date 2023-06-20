@@ -31,4 +31,10 @@ public class ScoreServiceImpl implements ScoreService{
   public List<Score> allScores(){
     return scoreRepository.findAll();
   }
+
+  @Override
+  public void addScore(Integer quiz_id, Integer score, Integer user_id){
+    scoreRepository.addScore(quiz_id,score,user_id);
+  }
+
 }

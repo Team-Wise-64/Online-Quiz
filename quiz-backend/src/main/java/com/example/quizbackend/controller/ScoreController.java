@@ -45,4 +45,14 @@ public class ScoreController {
     return scoreService.saveScore(score);
   }
 
+  @CrossOrigin(origins = "http://localhost:1234")
+  @PostMapping("/scores/{user_id}/{quiz_id}/{score}")
+  private void addScore(
+      @PathVariable("user_id") Integer user_id,
+      @PathVariable("quiz_id") Integer quiz_id,
+      @PathVariable("score") Integer score
+      ){
+    scoreService.addScore(quiz_id, score, user_id);
+  }
+
 }
