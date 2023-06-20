@@ -2,27 +2,19 @@ import React, {useState} from "react";
 import users from '../../seed/userData';
 import apiURL from "../api";
 
-export default function LogIn({setState}){
+import { TextField } from "@mui/material";
+import { form, FormLabel } from "@mui/material";
+
+export default function LogIn({setState, setUserId}){
     const [error, setError] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [nextUser, setNextUser] = useState([]);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const errors = {
-        username: "Invalid username",
-        password: "Invalid password"
-    };
-
-    const renderError = (name) => {
-        name === error.name && (
-            <div className="error">{error.message}</div>
-        );
-    };
+    const [invalidLogin, setInvalidLogin] = useState(false);
 
     async function handleSubmit(e){
         e.preventDefault();
         setState("loginForm");
-        let {userName, passWord} = document.forms[0];
         /*This is for new users
         try{
             const res = await fetch(`${apiURL}/users`,{
@@ -32,52 +24,57 @@ export default function LogIn({setState}){
             const data = await res.json();
         }catch(err){}
         */
-       try{
-        const res = await fetch(`${apiURL}/users`,{
-            method: "GET"
-        });
-        const data = await res.json();
-        setNextUser(data);
-       }catch(err){
-        console.error('Error is: ' + err);
-       }
-        if(nextUser) {
-            if(nextUser.password !== passWord.value){
-                setError({name: "passWord", message: errors.password});
-            }else{
-                setIsLoggedIn(true);
+        try{
+            const res = await fetch(`${apiURL}/users`,{
+                method: "GET"
+            });
+            const data = await res.json();
+            console.log(data);
+            console.log(username);
+            console.log(password);
+            for(let i = 0; i < data.length; i++){
+                let user = data[i];
+                if(user.username == username && user.password == password){
+                    setUserId(user.user_id)
+                    console.log(user.user_id)
+                    setState("landing");
+
+                }
             }
-        }else{
-            setError({name: "userName", message: errors.username})
+            
+            //if invalid login
+            setInvalidLogin(true);
+        }catch(err){
+            console.error('Error is: ' + err);
         }
     };
     const renderForm = (
         <div className="form">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e)=> handleSubmit(e)}>
                 <div className="input">
-                <label>Username</label>
-                <input type="text" name="username" required/>
-                {renderError("userName")}
+                <FormLabel>Username</FormLabel>
+                <TextField type="text" name="username" variant="outlined" required onChange={(e) => {setUsername(e.target.value)}}/>
                 </div>
                 <div className="input">
-                <label>Password</label>
-                <input type="password" name="password" required/>
-                {renderError("passWord")}
+                <FormLabel>Password</FormLabel>
+                <TextField type="password" name="password" variant="outlined" required onChange={(e) => {setPassword(e.target.value)}}/>
                 </div>
                 <div>
-                    <button onClick={() => {setState("landing")}}>Or log in as guest</button>
+                    <button onClick={() => {setState("landing")}}>Or log in as guest(Score not saved)</button>
                 </div>
                 <div>
                     <button type="submit">Login</button>
                 </div>
             </form>
+            {invalidLogin && <p className="p-text">Invalid login please try again!</p>}
         </div>
+        
     );
 
     return(
         <div>
             <div>
-                <div>Sign In</div>
+                <div className="login-form">Sign In</div>
                 {isLoggedIn ? <div>User is successfully logged in</div>: renderForm}
             </div>
         </div>

@@ -11,6 +11,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
+
+    @CrossOrigin(origins = "http://localhost:1234")
     @PostMapping("/users")
     public User saveUser(@RequestBody User user) {
         return null;
@@ -22,16 +24,19 @@ public class UserController {
         return userService.getAllUser();
     }
 
+    @CrossOrigin(origins = "http://localhost:1234")
     @GetMapping("/users/{id}")
     public String getUserById(@PathVariable("id") Integer id) {
         return userService.getUserNameById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:1234")
     @PutMapping("/users/{id}")
     public User updateUser(@PathVariable("id") Long id, @RequestBody User user) {
         return null;
     }
 
+    @CrossOrigin(origins = "http://localhost:1234")
     @DeleteMapping("/users/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         return null;

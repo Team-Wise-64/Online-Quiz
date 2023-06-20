@@ -8,32 +8,35 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int userId;
+    private int user_id;
 
     @Column(name = "username")
-    private String userName;
+    private String username;
 
     @Column(name = "password")
     private String password;
 
-    public int getUserId(){
-        return userId;
-    }
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public String getUserName(){
-        return userName;
-    }
-    public void setUserName(String userName){
-        this.userName = userName;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public String getPassword(){
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
         return password;
     }
-    public void setPassword(String password){
+
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -41,9 +44,9 @@ public class User {
 
     }
 
-    public User(int userId, String userName, String password) {
-        this.userId = userId;
-        this.userName = userName;
+    public User(int user_id, String username, String password) {
+        this.user_id = user_id;
+        this.username = username;
         this.password = password;
     }
 }
