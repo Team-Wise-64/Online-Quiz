@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import apiURL from "../api";
 
-const MAX_TIME = 15000;
+const MAX_TIME = 15;
 const NUM_QUESTIONS = 10;
 
 export default function PlayingQuiz({ id }) {
@@ -28,7 +28,7 @@ export default function PlayingQuiz({ id }) {
   // watch the timer and update accordingly:
   useEffect(() => {
     // show the options after 5s
-    if (timer < 15000) setShowOptions(true);
+    if (timer < 11) setShowOptions(true);
 
     // time is up, move on!
     if (timer < 0) setIdx(idx + 1);
@@ -102,13 +102,16 @@ export default function PlayingQuiz({ id }) {
 
   return showEnd ? (
     <>
+    <main>
       <h1>End</h1>
       <h2>Your score is {score}</h2>
+      </main>
     </>
   ) : (
     <>
+    <main>
       <h2>
-        Question {idx} | Time:{timer} Score:{score}
+        Question {idx} | Time:{timer} | Score:{score}
       </h2>
       {showOptions ? (
         <p className="current-question">{currentQuestion}</p>
@@ -128,10 +131,11 @@ export default function PlayingQuiz({ id }) {
                 >
                   {option}
                 </button>
-              </span>{" "}
+              </span>
             </li>
           ))}
       </ul>
+      </main>
     </>
   );
 }
