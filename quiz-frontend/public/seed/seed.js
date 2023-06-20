@@ -4,7 +4,10 @@ const users = require("./userData.js");
 const scores = [
   {quiz_id: 1, score: 15500, user_id: 3},
   {quiz_id: 2, score: 21630, user_id: 4},
-  {quiz_id: 4, score: 19800, user_id: 2}
+  {quiz_id: 4, score: 9800, user_id: 2},
+  {quiz_id: 3, score: 12000, user_id: 2}
+
+
 ];
 
 const connection = mysql.createConnection({
