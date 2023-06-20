@@ -11,6 +11,9 @@ export default function PlayingQuiz({ id, userId }) {
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [currentOptions, setCurrentOptions] = useState([]);
   const [score, setScore] = useState(0);
+  const [numOfQ, setNumOfQ] = useState(0);
+
+
 
 
   // timer state
@@ -20,6 +23,11 @@ export default function PlayingQuiz({ id, userId }) {
   // ui state
   const [showOptions, setShowOptions] = useState(false);
   const [showEnd, setShowEnd] = useState(false);
+
+  //set number of questions 
+  useEffect(() => {
+    getQuestionsLength();
+  },[numOfQ])
 
   // whenever the idx changes, get the next question
   useEffect(() => {
@@ -71,6 +79,7 @@ export default function PlayingQuiz({ id, userId }) {
     }
   }
 
+
   function shuffle(arr) {
     const newArr = [...arr];
     for (let i = newArr.length - 1; i > 0; i--) {
@@ -101,6 +110,23 @@ export default function PlayingQuiz({ id, userId }) {
     setShowEnd(true);
   }
 
+  async function getQuestionsLength(){
+    try {
+      const response = await fetch(
+        `${apiURL}/quizzes/${id}/questions`
+      );
+      const length = (await response.json()).length;
+      console.log(length);
+      setNumOfQ(length);
+      return length
+  }catch(error){
+    console.log(error);
+  }
+  }
+
+
+
+
   return showEnd ? (
     <>
       <main>
@@ -112,7 +138,7 @@ export default function PlayingQuiz({ id, userId }) {
     <>
       <main>
         <h2>
-          Question {idx} | Time:{timer} | Score:{score}
+          Question {idx} <span className="question-number"> / {numOfQ} </span>| Time:{timer} | Score:{score}
         </h2>
         {showOptions ? (
           <p className="current-question">{currentQuestion}</p>
