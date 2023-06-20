@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import apiURL from "../api";
 
-const MAX_TIME = 15;
+const MAX_TIME = 15000;
 const NUM_QUESTIONS = 10;
 
 export default function PlayingQuiz({ id }) {
@@ -28,7 +28,7 @@ export default function PlayingQuiz({ id }) {
   // watch the timer and update accordingly:
   useEffect(() => {
     // show the options after 5s
-    if (timer < 11) setShowOptions(true);
+    if (timer < 15000) setShowOptions(true);
 
     // time is up, move on!
     if (timer < 0) setIdx(idx + 1);
@@ -102,39 +102,39 @@ export default function PlayingQuiz({ id }) {
 
   return showEnd ? (
     <>
-    <main>
-      <h1>End</h1>
-      <h2>Your score is {score}</h2>
+      <main>
+        <h1>End</h1>
+        <h2>Your score is {score}</h2>
       </main>
     </>
   ) : (
     <>
-    <main>
-      <h2>
-        Question {idx} | Time:{timer} | Score:{score}
-      </h2>
-      {showOptions ? (
-        <p className="current-question">{currentQuestion}</p>
-      ) : (
-        <h1>{currentQuestion}</h1>
-      )}
-      <ul className="grid">
-        {showOptions &&
-          currentOptions?.map((option, i) => (
-            <li key={i} className="list">
-              <span className="answer-button-pushable" role="button">
-                <span className="answer-button-shadow"></span>
-                <span className="answer-button-edge"></span>
-                <button
-                  onClick={() => checkAndProceed(i)}
-                  className="answer-button-front text"
-                >
-                  {option}
-                </button>
-              </span>
-            </li>
-          ))}
-      </ul>
+      <main>
+        <h2>
+          Question {idx} | Time:{timer} | Score:{score}
+        </h2>
+        {showOptions ? (
+          <p className="current-question">{currentQuestion}</p>
+        ) : (
+          <h1>{currentQuestion}</h1>
+        )}
+        <ul className="grid">
+          {showOptions &&
+            currentOptions?.map((option, i) => (
+              <li key={i} className="list">
+                <span className="answer-button-pushable" role="button">
+                  <span className="answer-button-shadow"></span>
+                  <span className="answer-button-edge"></span>
+                  <button
+                    onClick={() => checkAndProceed(i)}
+                    className="answer-button-front text"
+                  >
+                    {option}
+                  </button>
+                </span>
+              </li>
+            ))}
+        </ul>
       </main>
     </>
   );
