@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import apiURL from "../api";
-import shuffle from "../../utils/shuffle"
-
 
 const MAX_TIME = 15;
 const NUM_QUESTIONS = 10;
@@ -72,6 +70,15 @@ export default function PlayingQuiz({ id }) {
     }
   }
 
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+  
+
   // when the user clicks an answer:
   function checkAndProceed(i) {
     if (currentOptions[i] == currentAnswer) {
@@ -101,7 +108,7 @@ export default function PlayingQuiz({ id }) {
   ) : (
     <>
       <h2>
-        Question {idx} | {timer} {score}
+        Question {idx} | Time:{timer} Score:{score}
       </h2>
       {showOptions ? <p>{currentQuestion}</p> : <h1>{currentQuestion}</h1>}
       <ul>
