@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import apiURL from "../api";
 
-const MAX_TIME = 15;
+const MAX_TIME = 15000;
 const NUM_QUESTIONS = 10;
 
 export default function PlayingQuiz({ id }) {
   // question state
   const [idx, setIdx] = useState(1);
-  const [currentQuestion, setCurrentQuestion] = useState('');
-  const [currentAnswer, setCurrentAnswer] = useState('');
+  const [currentQuestion, setCurrentQuestion] = useState("");
+  const [currentAnswer, setCurrentAnswer] = useState("");
   const [currentOptions, setCurrentOptions] = useState([]);
   const [score, setScore] = useState(0);
 
@@ -28,7 +28,7 @@ export default function PlayingQuiz({ id }) {
   // watch the timer and update accordingly:
   useEffect(() => {
     // show the options after 5s
-    if (timer < 11) setShowOptions(true);
+    if (timer < 15000) setShowOptions(true);
 
     // time is up, move on!
     if (timer < 0) setIdx(idx + 1);
@@ -59,10 +59,10 @@ export default function PlayingQuiz({ id }) {
   // make this async when using fetch
   async function getAnswer() {
     try {
-      const response = await fetch(`${apiURL}/quizzes/${id}/questions/${idx}/answer`);
+      const response = await fetch(
+        `${apiURL}/quizzes/${id}/questions/${idx}/answer`
+      );
       const data = (await response.json())[0];
-      // the below two lines are pretty self explanatory once
-      // you know .at(-1) is the final element in the array
       setCurrentOptions(shuffle(data?.slice(0, -1)));
       setCurrentAnswer(data?.at(-1));
     } catch (err) {
@@ -78,8 +78,6 @@ export default function PlayingQuiz({ id }) {
     }
     return newArr;
   }
-  
-  
 
   // when the user clicks an answer:
   function checkAndProceed(i) {
@@ -112,22 +110,28 @@ export default function PlayingQuiz({ id }) {
       <h2>
         Question {idx} | Time:{timer} Score:{score}
       </h2>
-      {showOptions ? <p>{currentQuestion}</p> : <h1>{currentQuestion}</h1>}
-      <ul>
+      {showOptions ? (
+        <p className="current-question">{currentQuestion}</p>
+      ) : (
+        <h1>{currentQuestion}</h1>
+      )}
+      <ul className="grid">
         {showOptions &&
-          // https://react.dev/learn/rendering-lists
           currentOptions?.map((option, i) => (
-            <li key={i}>
-              <button onClick={() => checkAndProceed(i)}>{option}</button>
+            <li key={i} className="list">
+              <span className="answer-button-pushable" role="button">
+                <span className="answer-button-shadow"></span>
+                <span className="answer-button-edge"></span>
+                <button
+                  onClick={() => checkAndProceed(i)}
+                  className="answer-button-front text"
+                >
+                  {option}
+                </button>
+              </span>{" "}
             </li>
           ))}
       </ul>
     </>
   );
 }
-
-/**
- * Your UI is only ever in 2 states, the "show options" state or "don't show options"
- * You don't need loads of state like "show question" and "show score"
- * just base it all on the "show options" state
- */
