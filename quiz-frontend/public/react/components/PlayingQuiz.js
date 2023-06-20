@@ -71,12 +71,14 @@ export default function PlayingQuiz({ id }) {
   }
 
   function shuffle(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
+    const newArr = [...arr];
+    for (let i = newArr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
+      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
     }
-    return arr;
+    return newArr;
   }
+  
   
 
   // when the user clicks an answer:
