@@ -35,8 +35,8 @@ export default function LogIn({setState, setUserId}){
             for(let i = 0; i < data.length; i++){
                 let user = data[i];
                 if(user.username == username && user.password == password){
-                    setUserId(user.user_id)
-                    console.log(user.user_id)
+                    setUserId(user.userId)
+                    console.log(user.userId)
                     setState("landing");
 
                 }

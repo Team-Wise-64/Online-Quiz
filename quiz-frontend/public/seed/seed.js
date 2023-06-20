@@ -28,7 +28,7 @@ try{
   connection.query(`SET FOREIGN_KEY_CHECKS = 1;`)
   connection.query(`CREATE TABLE quizzes (quiz_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, quiz_name VARCHAR(255))`)
   connection.query(`CREATE TABLE questions (question_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, question_number INT NOT NULL, question VARCHAR(255),quiz_id INT, FOREIGN KEY (quiz_id) REFERENCES quizzes (quiz_id));`)
-  connection.query(`CREATE TABLE answers (answer_number INT NOT NULL AUTO_INCREMENT PRIMARY KEY,a VARCHAR(255), b VARCHAR(255), c VARCHAR(255), d VARCHAR(255), answer VARCHAR(255), question_id INT, FOREIGN KEY (question_id) REFERENCES questions (question_id));`)
+  connection.query(`CREATE TABLE answers (answer_number INT NOT NULL AUTO_INCREMENT PRIMARY KEY,a VARCHAR(255), b VARCHAR(255), c VARCHAR(255), d VARCHAR(255), answer VARCHAR(255), quiz_id INT NOT NULL, question_id INT, FOREIGN KEY (question_id) REFERENCES questions (question_id));`)
   connection.query(`CREATE TABLE users (user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255), password VARCHAR(255));`)
   connection.query(`CREATE TABLE scores (score_number INT NOT NULL AUTO_INCREMENT PRIMARY KEY, quiz_id INT NOT NULL, score INT NOT NULL, user_id INT NOT NULL, FOREIGN KEY (user_id) REFERENCES users (user_id));`)
 
@@ -42,7 +42,8 @@ try{
       let a = item[1];
       q.question_number = y;
       q.quiz_id = (index + 1);
-      a.question_id = x;
+      a.question_id = y;
+      a.quiz_id = (index + 1);
       connection.query(`INSERT INTO questions SET ?`,q);
       connection.query(`INSERT INTO answers SET ?`,a);
       x += 1;

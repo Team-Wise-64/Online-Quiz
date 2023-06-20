@@ -4,13 +4,14 @@ import apiURL from "../api";
 const MAX_TIME = 15;
 const NUM_QUESTIONS = 10;
 
-export default function PlayingQuiz({ id }) {
+export default function PlayingQuiz({ id, userId }) {
   // question state
   const [idx, setIdx] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState("");
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [currentOptions, setCurrentOptions] = useState([]);
   const [score, setScore] = useState(0);
+
 
   // timer state
   const [timer, setTimer] = useState(MAX_TIME);

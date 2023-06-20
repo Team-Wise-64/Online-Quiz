@@ -11,8 +11,13 @@ public class AnswerServiceImpl implements AnswerService {
     @Autowired
     private AnswerRepository answerRepository;
     @Override
-    public Object[] getAnswer(Integer questionId) {
-        return answerRepository.findByQuestionId(questionId);
+    public Object[] getAnswers(Integer quizId) {
+        return answerRepository.findByQuizId(quizId);
+    }
+
+    @Override
+    public Object[] getAnswer(Integer quizId, Integer questionId){
+        return answerRepository.findByQuestionId(quizId, questionId);
     }
 
     public Answer saveAnswer(Answer newAnswer){
