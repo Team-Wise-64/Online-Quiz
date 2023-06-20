@@ -4,7 +4,9 @@ import com.example.quizbackend.model.Answer;
 
 public interface AnswerService {
 
-    Object[] getAnswer(Integer questionId);
+    Object[] getAnswers(Integer questionId);
+
+    Object[] getAnswer(Integer quizId, Integer questionId);
 
     Answer saveAnswer(Answer newAnswer);
 }

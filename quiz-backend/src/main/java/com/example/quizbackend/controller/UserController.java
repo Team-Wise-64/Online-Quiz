@@ -26,8 +26,8 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:1234")
     @GetMapping("/users/{id}")
-    public String getUserById(@PathVariable("id") Integer id) {
-        return userService.getUserNameById(id);
+    public User getUserById(@PathVariable("id") Integer id) {
+        return userService.findByUser_id(id);
     }
 
     @CrossOrigin(origins = "http://localhost:1234")

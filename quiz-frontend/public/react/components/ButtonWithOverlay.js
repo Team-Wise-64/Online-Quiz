@@ -5,6 +5,8 @@ import apiURL from "../api";
 export default function ButtonWithOverlay(){
   const [overlay, setOverlay] = useState(false);
   const [topScores, setTopScores] = useState([]);
+  const [quizname, setQuizname ] = useState("")
+  const [username, setUsername ] = useState("")
 
   useEffect(() => {
     getTopScores();
@@ -15,24 +17,10 @@ export default function ButtonWithOverlay(){
       const res = await fetch(`${apiURL}/scores`);
       const data = await res.json();
       console.log(data);
-
-      
-      //setTopScores(data);
-      //let sortedData = sortScores(data);
-      //console.log("data", sortedData);
-
-      let dataToDisplay = [];
-      for(let i = 0; i < data.length; i++){
-        console.log(data[i])
-        dataToDisplay.push(getQuizandPlayerName(
-        data[i].quizId, 
-        data[i].score, 
-        data[i].userId
-       ))
-    }
-      console.log(dataToDisplay);
+      let dataToDisplay = (sortScores(data));
+      console.log("p",dataToDisplay);
       setTopScores(dataToDisplay);
-      console.log(topScores);
+      
     } catch (error) {
       console.log(error)
     }
@@ -40,31 +28,46 @@ export default function ButtonWithOverlay(){
     
   }
 
-  function sortScores(data){
-    let sortedData = data.sort(function(a, b){ return a.score - b.score })
-    let dataToDisplay = []
-    for(let i = 0; i < sortedData.length; i++){
-      dataToDisplay.push(getQuizandPlayerName(
-        sortedData[i].quizId, 
-        sortedData[i].score, 
-        sortedData[i].userId
-        ))
+  async function sortScores(data){
+    try {
+      let sortedData = data.sort(function(a, b){ return a.score - b.score })
+      let dataToDisplay = []
+      for(let i = 0; i < sortedData.length; i++){
+        console.log(sortedData[i]);
+        try {
+          const quiz = await fetch(`${apiURL}/quizzes/${sortedData[i].quizId}`);
+          const quizname = await quiz.text();
+    
+          const user = await fetch(`${apiURL}/users/${1}`); //replace with user id
+          const username = await user.text();
+          console.log({quiz_name: quizname, score: sortedData[i].score, username: username})
+          return {quiz_name: quizname, score: sortedData[i].score, username: username}
+        } catch (error) {
+          console.log(error)
+        }
+        dataToDisplay.push(getQuizandPlayerName(
+          sortedData[i].quizId, 
+          sortedData[i].score, 
+          sortedData[i].userId
+          ))
+      return dataToDisplay; 
     }
     console.log(dataToDisplay);
-    return dataToDisplay;
+    } catch (error) {
+      console.log(error)
+    }
+    
+    
 
   }
 
   async function getQuizandPlayerName(quiz_id, user_id, score){
     try {
-      console.log("ghelloekga")
       const quiz = await fetch(`${apiURL}/quizzes/${quiz_id}`);
-      const quizname = JSON.stringify(quiz);
-      console.log('a', quizname);
+      const quizname = await quiz.text();
 
       const user = await fetch(`${apiURL}/users/${user_id}`);
-      const username = user.json;
-      console.log(username);
+      const username = await user.text();
       return {quiz_name: quizname, score: score, username: username}
     } catch (error) {
       console.log(error)
@@ -90,7 +93,7 @@ export default function ButtonWithOverlay(){
           <div className="overlay-content">
             <h2>Leaderboard</h2>
             <table className="leaderboard-table">
-{/*             
+            
               <thead>
                 <tr>
                   <th className="table-head">Rank</th>
@@ -118,7 +121,7 @@ export default function ButtonWithOverlay(){
                   <th className="position3">{topScores[2].quizname}</th>
                   <td className="position3">{topScores[2].score}</td>
                 </tr>
-              </tbody> */}
+              </tbody>
             </table>
             <button onClick={handleClose}>Close</button>
           </div>

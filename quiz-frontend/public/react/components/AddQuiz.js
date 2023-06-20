@@ -16,15 +16,23 @@ export default function AddQuiz({ setState }) {
   const [d, setD] = useState("");
   const [answer, setAnswer] = useState("");
 
+  useEffect(() => {
+
+  }, []);
+
   let form = [];
 
   function handleSubmitQuestion(e) {
     e.preventDefault();
+    console.log({ question: question})
+    console.log({a: a, b: b, c: c, d: d, answer: answer})
     setQuestion({ question: question});
-    setOptions({a: a, b: b, c: c, d: d, answer: answer})
+    setOptions({a: a, b: b, c: c, d: d, answer: answer});
+    let newArr = questions;
+    newArr = newArr.push([{question: question}, {a: a, b: b, c: c, d: d, answer: answer}])
+    setQuestions(newArr);
     console.log("questions", questions);
     console.log([question, options]);
-    setQuestions([[question, options], ...questions]);
     console.log(question);
     console.log(questions);
     console.log(quizName);
@@ -94,6 +102,7 @@ export default function AddQuiz({ setState }) {
           onChange={(e) => setQuizName({quiz_name: e.target.value})}
         ></TextField>
         {form}
+        {/* {form.map((item, index) => {<div key={index}>{item}</div> })} */}
         <button type="submit">Save quiz</button>
       </FormControl>
     </div>

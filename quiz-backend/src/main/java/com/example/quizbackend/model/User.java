@@ -1,6 +1,8 @@
 package com.example.quizbackend.model;
 
 import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -8,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int user_id;
+    private int userId;
 
     @Column(name = "username")
     private String username;
@@ -16,12 +18,16 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    public int getUser_id() {
-        return user_id;
+    @Column(name = "user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Score> score = new HashSet<Score>();
+
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int user_id) {
+        this.userId = user_id;
     }
 
     public String getUsername() {
@@ -45,7 +51,7 @@ public class User {
     }
 
     public User(int user_id, String username, String password) {
-        this.user_id = user_id;
+        this.userId = user_id;
         this.username = username;
         this.password = password;
     }

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface UserService {
 
+    User findByUser_id(int userId);
     List<User> getAllUser();
     String getUserNameById(Integer id);
     User updateUserNameById(Long id, User user);
