@@ -33,7 +33,7 @@ export const App = () => {
   }, []);
   return (
     <>
-      <Header />
+      <Header setState={setState}/>
       <main>
         {state === "loginForm" && (
           <LogIn setState={setState} setUserId={setUserId} />

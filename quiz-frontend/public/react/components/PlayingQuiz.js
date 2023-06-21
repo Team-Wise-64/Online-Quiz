@@ -4,17 +4,13 @@ import apiURL from "../api";
 const MAX_TIME = 15;
 const NUM_QUESTIONS = 10;
 
-export default function PlayingQuiz({ id, userId }) {
-  // question state
+export default function PlayingQuiz({ id, setState }) {
   const [idx, setIdx] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState("");
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [currentOptions, setCurrentOptions] = useState([]);
   const [score, setScore] = useState(0);
   const [numOfQ, setNumOfQ] = useState(0);
-
-
-
 
   // timer state
   const [timer, setTimer] = useState(MAX_TIME);
@@ -125,13 +121,17 @@ export default function PlayingQuiz({ id, userId }) {
   }
 
 
-
+  function handleClick(e) {
+    e.preventDefault();
+    setState("pickingQuiz");
+  }
 
   return showEnd ? (
     <>
       <main>
         <h1>End</h1>
         <h2>Your score is {score}</h2>
+        <button className="back-button">Back to Quizzes</button>
       </main>
     </>
   ) : (
@@ -141,9 +141,12 @@ export default function PlayingQuiz({ id, userId }) {
           Question {idx} <span className="question-number"> / {numOfQ} </span>| Time:{timer} | Score:{score}
         </h2>
         {showOptions ? (
-          <p className="current-question">{currentQuestion}</p>
+            <p className="current-question">{currentQuestion}</p>
         ) : (
-          <h1>{currentQuestion}</h1>
+          <div>
+          <h1 className="current-question2">{currentQuestion}</h1>
+          <p className="temp-timer">{timer-10}</p>
+          </div>
         )}
         <ul className="grid">
           {showOptions &&
