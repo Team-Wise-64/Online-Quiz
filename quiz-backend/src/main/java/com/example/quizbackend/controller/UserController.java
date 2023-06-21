@@ -15,7 +15,7 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:1234")
     @PostMapping("/users")
     public User saveUser(@RequestBody User user) {
-        return null;
+        return userService.saveUser(user);
     }
 
     @CrossOrigin(origins = "http://localhost:1234")

@@ -24,6 +24,12 @@ public class UserServiceImpl implements UserService{
         Optional<User> optionalUser = userRepository.findById(id);
         return optionalUser.map(User::getUsername).orElse(null);
     }
+
+    @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
     @Override
     public User updateUserNameById(Long id, User user) {
         return null;
