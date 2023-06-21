@@ -8,6 +8,7 @@ export default function AddQuiz({ setState }) {
   const [questions, setQuestions] = useState([]);
   const [showQuiz, setShowQuiz] = useState(true);
   const [showQuestion, setShowQuestion] = useState(false);
+  const [idx, setIdx] = useState(1);
 
   const [quizName, setQuizName] = useState("");
   const [question, setQuestion] = useState("");
@@ -43,13 +44,21 @@ export default function AddQuiz({ setState }) {
     const quizRes = await fetch(`${apiURL}/quizzes`, {
       method: "POST",
       headers: {'Content-Type' : "application/json"},
-      body: {}
+      body: JSON.stringify({quizName: quizName})
     })
+    const data = await quizRes.json();
 
-    const questionRes = await fetch(`${apiURL}/quizzes/{quiz_id}/questions`, {
+  }
+  async function saveQuestion(idx){
+
+    const questionRes = await fetch(`${apiURL}/questions`, {
       method: "POST",
       headers: {'Content-Type' : "application/json"},
-      body: {}
+      body: JSON.stringify({
+        "questionNumber": idx,
+        "question": question,
+        "quiz": {"quiz_id": 0}
+      })
     })
 
     const answerRes = await fetch(`${apiURL}/quizzes/{quiz_id}/answer`, {
@@ -68,6 +77,7 @@ export default function AddQuiz({ setState }) {
         console.log(quizName) 
         setShowQuiz(false);
         setShowQuestion(true);
+        saveQuiz();
         }}>
         <FormLabel>Quiz name</FormLabel>
         <TextField

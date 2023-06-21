@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface ScoreRepository extends JpaRepository<Score, Integer> {
 
   @Query(
-      value = "SELECT score FROM scores u WHERE u.user_id = :userId",
+      value = "SELECT quiz_id, score, user_id FROM scores u WHERE u.user_id = :userId",
       nativeQuery = true)
   Object[] getAllUserScores(@Param("userId") Integer userId);
 

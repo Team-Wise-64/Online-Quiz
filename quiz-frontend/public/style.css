@@ -71,7 +71,7 @@ main {
 
 /* Style the play button */
 .Play-btn {
-  color: black;
+  color: white;
   transition: all 0.5s;
   position: relative;
   font-size: 1.5em;
@@ -131,6 +131,7 @@ main {
   justify-content: space-between;
   align-items: left;
   padding-top: 10px;
+  padding-right: 10px;
 }
 
 /* Style the top bar home button */
@@ -211,6 +212,18 @@ h1 {
   margin: 0 0 24px;
   text-align: center;
   text-transform: uppercase;
+}
+
+.h1-text{
+  color: #ffffff;
+  font-family: "Raleway", sans-serif;
+  font-size: 47px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 0 0 24px;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 24px;
 }
 
 h2 {
