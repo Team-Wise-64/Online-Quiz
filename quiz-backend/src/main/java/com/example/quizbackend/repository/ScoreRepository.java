@@ -1,11 +1,12 @@
 package com.example.quizbackend.repository;
 
 import com.example.quizbackend.model.Score;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ScoreRepository extends JpaRepository<Score, Integer> {
 
   @Query(
@@ -23,7 +24,7 @@ public interface ScoreRepository extends JpaRepository<Score, Integer> {
   @Query(
       value = "INSERT INTO scores (quiz_id, score, user_id ) VALUES (:quizId, :score, :userId)",
       nativeQuery = true)
-  void addScore(
+  Object[] addScore(
       @Param("quizId") Integer quizId,
       @Param("score") Integer score,
       @Param("userId") Integer userId);
