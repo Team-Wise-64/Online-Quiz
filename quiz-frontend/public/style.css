@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap");
 
 /* Style the body, root, header and main */
 
@@ -84,7 +84,7 @@ main {
 }
 
 .Play-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px; /* Increase the top offset */
   left: -60px; /* Increase the left offset */
@@ -92,11 +92,11 @@ main {
   height: calc(100% + 20px); /* Adjust the height */
   z-index: -1;
   transition: all 0.8s;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .Play-btn::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px; /* Increase the top offset */
   left: -60px; /* Increase the left offset */
@@ -116,7 +116,6 @@ main {
   transform: rotate(45deg);
   background-color: rgb(255, 255, 255);
 }
-
 
 /* Style for the container */
 .quiz-container {
@@ -151,17 +150,19 @@ main {
 
 /* Style the cartoon buttons */
 .cartoon-btn {
-  background-color: #3DD1E7;
-  border: 0 solid #E5E7EB;
+  background-color: #3dd1e7;
+  border: 0 solid #e5e7eb;
   box-sizing: border-box;
   color: #000000;
   display: flex;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 700;
   justify-content: center;
   line-height: 50px;
-  padding: .75rem 1.65rem;
+  padding: 0.75rem 1.65rem;
   position: relative;
   text-align: center;
   text-decoration-thickness: auto;
@@ -178,7 +179,7 @@ main {
 }
 
 .cartoon-btn:after {
-  content: '';
+  content: "";
   position: absolute;
   border: 1px solid #000000;
   bottom: 4px;
@@ -192,14 +193,14 @@ main {
   left: 2px;
 }
 
-.p-text{
-  color: black
+.p-text {
+  color: black;
 }
 
 /* Styles for h1, h2, p, and a elements */
 h1 {
   color: #ffffff;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 47px;
   font-weight: 800;
   line-height: 72px;
@@ -210,7 +211,7 @@ h1 {
 
 h2 {
   color: #ffffff;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 30px;
   font-weight: 800;
   line-height: 36px;
@@ -218,9 +219,9 @@ h2 {
   text-align: center;
 }
 
-question-number{
+question-number {
   color: #ffffff;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 14px;
   font-weight: 800;
   line-height: 36px;
@@ -230,7 +231,7 @@ question-number{
 
 p {
   color: #f8f8f8;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 32px;
@@ -302,19 +303,19 @@ a:hover {
 }
 
 .leaderboard-table th {
-  background-color: rgb(255, 255, 255); /* Golden color background for position 1 */
+  background-color: rgb(255,255,255); 
 }
 
 .leaderboard-table td.position1 {
-  background-color: #ffbf00; /* Golden color background for position 1 */
+  background-color: #ffbf00;
 }
 
 .leaderboard-table td.position2 {
-  background-color: #dddddd; /* Silver color background for position 2 */
+  background-color: #dddddd;
 }
 
 .leaderboard-table td.position3 {
-  background-color: #c17326; /* Bronze color background for position 3 */
+  background-color: #c17326;
 }
 
 .leaderboard-table td,
@@ -326,18 +327,22 @@ a:hover {
 
 .overlay-button {
   --b: 3px;
-  --s: .45em;
+  --s: 0.45em;
   --color: #ffffff;
 
-  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
   color: var(--color);
   --_p: var(--s);
-  background:
-    conic-gradient(from 90deg at var(--b) var(--b),#c3a3a300 90deg,var(--color) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
+  background: conic-gradient(
+      from 90deg at var(--b) var(--b),
+      #c3a3a300 90deg,
+      var(--color) 0
+    )
+    var(--_p) var(--_p) / calc(100% - var(--b) - 2 * var(--_p))
+    calc(100% - var(--b) - 2 * var(--_p));
+  transition: 0.3s linear, color 0s, background-color 0s;
   outline: var(--b) solid #0000;
-  outline-offset: .6em;
+  outline-offset: 0.6em;
   font-size: 16px;
 
   border: 0;
@@ -349,21 +354,15 @@ a:hover {
 }
 
 .overlay-button:hover,
-.overlay-button:focus-visible{
+.overlay-button:focus-visible {
   --_p: 0px;
   outline-color: var(--color);
-  outline-offset: .05em;
+  outline-offset: 0.05em;
 }
 
 .overlay-button:active {
   background: var(--color);
   color: #fff;
-}
-
-.stats {
-  font-size: 18px;
-  font-weight: bold;
-  color: blue;
 }
 
 .add-button {
@@ -381,7 +380,7 @@ a:hover {
 }
 
 .add-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px;
   left: -60px;
@@ -391,11 +390,11 @@ a:hover {
   height: calc(100% + 20px); /* Adjust the height */
   z-index: -1;
   transition: all 0.8s;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .add-button::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px; /* Increase the top offset */
   left: -60px; /* Increase the left offset */
@@ -433,11 +432,14 @@ a:hover {
   margin-top: 200px;
 }
 
-
 /* Style the answer */
-.current-question{
+.current-question {
   font-size: x-large;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+}
+
+.current-question2 {
+  margin-top: 180px;
 }
 
 /* Style the answer buttons*/
@@ -466,7 +468,7 @@ a:hover {
   background: hsl(0deg 0% 0% / 0.25);
   will-change: transform;
   transform: translateY(2px);
-  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
   width: 300px;
   height: 100px;
 }
@@ -489,6 +491,7 @@ a:hover {
   height: 110px;
 }
 
+/* Each answer button style */
 .answer-button-front {
   display: block;
   position: relative;
@@ -499,7 +502,7 @@ a:hover {
   background: hsl(345deg 100% 47%);
   will-change: transform;
   transform: translateY(-4px);
-  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
   width: 300px;
   height: 100px;
 }
@@ -518,7 +521,7 @@ a:hover {
 
 .answer-button-pushable:hover .answer-button-front {
   transform: translateY(-6px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
 }
 
 .answer-button-pushable:active .answer-button-front {
@@ -528,7 +531,7 @@ a:hover {
 
 .answer-button-pushable:hover .answer-button-shadow {
   transform: translateY(4px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
 }
 
 .answer-button-pushable:active .answer-button-shadow {
@@ -540,6 +543,38 @@ a:hover {
   outline: none;
 }
 
-.list{
+/* Remove the dots next to each button */
+.list {
   list-style-type: none;
+}
+
+/* Style the 5 second timer, pre-answers */
+.temp-timer {
+  text-align: center;
+  font-size: 300%;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Back button after quiz ends */
+.back-button {
+  background-color: rgb(44, 68, 224);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px; /* Adjust the height as needed */
+  width: 200px; /* Adjust the width as needed */
+  margin: 0 auto;
+}
+
+.back-button::before {
+  content: "\2190";
+  margin-right: 5px;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
 }
