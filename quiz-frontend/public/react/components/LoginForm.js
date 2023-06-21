@@ -91,17 +91,17 @@ export default function LogIn({ setState, setUserId }) {
             sign in as a guest
           </Button>
         </div>
+        <div>
+        <p className="notice">
+          <b>Score</b> not saved for guests
+        </p>
+      </div>
       </form>
       {invalidLogin && (
         <Typography variant="body1" color="error">
           Invalid login, please try again!
         </Typography>
       )}
-      <div>
-        <p className="notice">
-          <b>Score</b> not saved for guests
-        </p>
-      </div>
     </div>
   );
 
