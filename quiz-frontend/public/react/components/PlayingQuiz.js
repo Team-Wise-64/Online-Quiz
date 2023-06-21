@@ -4,7 +4,7 @@ import apiURL from "../api";
 const MAX_TIME = 15;
 const NUM_QUESTIONS = 10;
 
-export default function PlayingQuiz({ id, setState }) {
+export default function PlayingQuiz({ id, setState, userId }) {
   const [idx, setIdx] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState("");
   const [currentAnswer, setCurrentAnswer] = useState("");
@@ -104,6 +104,29 @@ export default function PlayingQuiz({ id, setState }) {
   function finishQuiz() {
     clearInterval(timerId);
     setShowEnd(true);
+    saveScore()
+  }
+
+  async function saveScore(){
+    if(userId !== null){
+    try {
+      const res = fetch(`${apiURL}/scores`, {
+        method: "POST",
+        headers: {'Content-Type' : "application/json"},
+        body: JSON.stringify(
+          {
+            "quizId": id, 
+            "score": score, 
+            "user": {
+              "userId": userId
+            }
+          }
+          )
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   }
 
   async function getQuestionsLength(){

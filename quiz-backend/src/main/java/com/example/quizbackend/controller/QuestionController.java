@@ -41,7 +41,7 @@ public class QuestionController {
   }
 
   @CrossOrigin(origins = "http://localhost:1234")
-  @PostMapping("/quizzes/{quiz_id}/questions")
+  @PostMapping("/questions")
   public Question saveQuiz(@RequestBody Question newQuestion) {
     return questionService.saveQuestion(newQuestion);
   }

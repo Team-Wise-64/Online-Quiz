@@ -1,9 +1,11 @@
 import React from "react";
-import ButtonWithOverlay from "./ButtonWithOverlay";
+import Leaderboard from "./Leaderboard";
+import PreviousScores from "./PreviousScores";
 
-export default LandingPage = ({ setState }) => {
+export default LandingPage = ({ setState, userId}) => {
   function handleClick(e) {
     e.preventDefault();
+    console.log(userId)
     setState("pickingQuiz");
   }
   return (
@@ -15,15 +17,16 @@ export default LandingPage = ({ setState }) => {
           <button className="Play-btn" onClick={handleClick}>
             Play
           </button>
-          <ButtonWithOverlay />
-          <button
+          <Leaderboard />
+          {userId !== null && <PreviousScores userId={userId}/>}
+          {/* <button
             className="add-button"
             onClick={() => {
               setState("adding");
             }}
           >
             Add a quiz!
-          </button>
+          </button> */}
         </div>
       </main>
     </>

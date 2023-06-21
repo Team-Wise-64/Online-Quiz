@@ -33,10 +33,52 @@ public class Question {
 
   }
 
-  public Question(int questionId, int questionNumber, String question) {
+  public Question(int questionId, Integer questionNumber, String question, Quiz quiz,
+      Answer answer) {
     this.questionId = questionId;
     this.questionNumber = questionNumber;
     this.question = question;
+    this.quiz = quiz;
+    this.answer = answer;
   }
 
+  public int getQuestionId() {
+    return questionId;
+  }
+
+  public void setQuestionId(int questionId) {
+    this.questionId = questionId;
+  }
+
+  public Integer getQuestionNumber() {
+    return questionNumber;
+  }
+
+  public void setQuestionNumber(Integer questionNumber) {
+    this.questionNumber = questionNumber;
+  }
+
+  public String getQuestion() {
+    return question;
+  }
+
+  public void setQuestion(String question) {
+    this.question = question;
+  }
+
+  public Quiz getQuiz() {
+    return quiz;
+  }
+
+  public void setQuiz(Quiz quiz) {
+    this.quiz = quiz;
+  }
+
+  public Answer getAnswer() {
+    return answer;
+  }
+
+  public void setAnswer(Answer answer) {
+    this.answer = answer;
+  }
 }

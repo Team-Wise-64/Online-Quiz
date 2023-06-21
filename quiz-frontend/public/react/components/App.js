@@ -34,19 +34,19 @@ export const App = () => {
   }, []);
   return (
     <>
-      <Header setState={setState}/>
+      <Header setState={setState} userId = {userId} setUserId ={setUserId}/>
       <main>
         {state === "loginForm" && (
           <LogIn setState={setState} setUserId={setUserId} />
         )}
         {state === "registrationForm" && (
-          <RegistrationForm setState={setState}/>
+          <RegistrationForm setState={setState} setUserId={setUserId}/>
         )}
 
-        {state === "landing" && <LandingPage setState={setState} />}
+        {state === "landing" && <LandingPage setState={setState} userId={userId} />}
 
         {state === "pickingQuiz" && (
-          <QuizList setState={setState} quizzes={quizzes} setId={setId} />
+          <QuizList setState={setState} quizzes={quizzes} setId={setId} userId={userId}/>
         )}
 
         {state === "playingQuiz" && (
