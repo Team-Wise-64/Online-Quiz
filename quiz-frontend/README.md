@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Online-Quiz
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an interactive online quiz where players can create an account and score high to win a spot on the leaderboard!
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+These instructions will help you set up the project on your local machine for development and testing purposes. See the deployment section for notes on how to deploy the project on a live system.
 
-### `npm start`
+### Installing
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository and navigate to the `quiz-frontend/` folder in a terminal:
+   ```bash
+   git clone <repository_url>
+   cd quiz-frontend/
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Install the dependencies and seed the initial data:
+   ```bash
+   npm install --force
+   npm run seed
+   ```
 
-### `npm test`
+### Running
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run the application, you will need two separate terminals to run the back-end and front-end.
 
-### `npm run build`
+#### Back-end
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Open an IDE or equivalent and navigate to the `quiz-backend` folder.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Run the `QuizBackendApplication` class in your IDE. It can be found at:
+   ```
+   quiz-backend/src/main/java/QuizBackendApplication
+   ```
+   This will start the back-end server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Front-end
 
-### `npm run eject`
+1. Open a new terminal and navigate to the `quiz-frontend` directory.
+   ```bash
+   cd quiz-frontend/
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Run the following command to start the front-end React application:
+   ```bash
+   npm run client-dev
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   This will start the front-end development server.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application. The page will automatically reload when you make changes to the code.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Running the Tests
 
-## Learn More
+Explain how to run the automated tests for this system
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Break down into end to end tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Explain what these tests test and why
 
-### Code Splitting
+```
+Give an example
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Deployment
 
-### Analyzing the Bundle Size
+Add additional notes about how to deploy this on a live system
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Built With
 
-### Making a Progressive Web App
+* [Spring Boot](https://spring.io/) - Framework used for the back-end
+* [Maven](https://maven.apache.org/) - Dependency Management for the back-end
+* [React](https://reactjs.org/) - JavaScript library used for the front-end
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* **Salma Jama**
+* **Paul Preda**
+* **Essa Essa**
 
-### Advanced Configuration
+## Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* **Matthew**
+* **Simon**
+* **Jordan**
+* **ChatGPT**
