@@ -11,7 +11,7 @@ These instructions will help you set up the project on your local machine for de
 1. Clone the repository and navigate to the `quiz-frontend/` folder in a terminal:
    ```bash
    git clone <repository_url>
-   cd quiz-frontend/
+   cd quiz-frontend/ 
    ```
 
 2. Install the dependencies and seed the initial data:
