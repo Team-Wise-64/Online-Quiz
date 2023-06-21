@@ -82,6 +82,16 @@ export default function LogIn({ setState, setUserId }) {
           <p className="or">or</p>
         </div>
         <div className="button-container">
+            <Button
+            variant="contained"
+            onClick={() => {
+                setState("registrationForm");
+              }}>Register</Button>
+        </div>
+        <div>
+          <p className="or">or</p>
+        </div>
+        <div className="button-container">
           <Button
             variant="contained"
             onClick={() => {

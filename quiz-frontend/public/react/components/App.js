@@ -5,6 +5,7 @@ import PlayingQuiz from "./PlayingQuiz";
 import AddQuiz from "./AddQuiz";
 import LogIn from "./LoginForm";
 import Header from "./Header";
+import RegistrationForm from "./RegistrationForm";
 
 import "../../style.css";
 import apiURL from "../api";
@@ -37,6 +38,9 @@ export const App = () => {
       <main>
         {state === "loginForm" && (
           <LogIn setState={setState} setUserId={setUserId} />
+        )}
+        {state === "registrationForm" && (
+          <RegistrationForm setState={setState}/>
         )}
 
         {state === "landing" && <LandingPage setState={setState} />}
