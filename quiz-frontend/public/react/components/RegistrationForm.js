@@ -20,7 +20,10 @@ export default function RegistrationForm({setState}){
                 if (!(user.username === username)) {
                     setIsRegistered(true);
                 }
-            }}catch(err){
+            }
+            console.log({"username": username, "password": password});
+          }
+          catch(err){
                 console.error("Error is: " + err);
             }
     };
@@ -30,14 +33,15 @@ export default function RegistrationForm({setState}){
         checkUserExists();
         if(!(isRegistered)){
             try{
-                console.log({"username": username, "password": password});
+              let body = JSON.stringify({"username": username, "password": password, "scores": []})
                 const response = await fetch(`${apiURL}/users`,{
                     method: "POST",
                     headers: {'Content-Type' : "application/json"},
-                    body: {"username": username, "password": password}
+                    body: body
                 })
                 const newData = await response.json();
                 setIsRegistered(true);
+                setState("landing")
                 }catch(err){
                     console.error("Error is: " + err);
                 }
@@ -45,7 +49,7 @@ export default function RegistrationForm({setState}){
     };
       return (
         <div className="form">
-          <h2>Register</h2>
+          <h2 className="p-text">Register</h2>
           <form onSubmit={handleSubmit}>
             <div className="input">
               <input type="text" id="username" value={username} placeholder="Username*" onChange={(e) => setUsername(e.target.value)} required/>
