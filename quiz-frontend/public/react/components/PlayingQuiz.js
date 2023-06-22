@@ -154,7 +154,7 @@ export default function PlayingQuiz({ id, setState, userId }) {
       <main>
         <h1>End</h1>
         <h2>Your score is {score}</h2>
-        <button className="back-button">Back to Quizzes</button>
+        <button className="back-button" onClick={handleClick}>Back to Quizzes</button>
       </main>
     </>
   ) : (
